@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Тип технического обслуживания    @author alex  @author sis    @uiname Тип технического обслуживания 
+message MaintenanceType {
+ optional int64 id = 1;
+ optional string shortName = 2; // Краткое наименование 
+ optional string fullName = 3; // Полное наименование 
+ optional uint64 duration = 4; // Длительность 
+ optional bool decommissioning = 5; // Признак вывода из НКУ 
+ optional int64 documentId = 6; // Документ 
+ optional string description = 7; // Примечание 
+ repeated int64 monthRestrictionTypesId = 8; // Коды ограничений 
+}
+
+message MaintenanceTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional MaintenanceType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message MaintenanceTypeGetResponse {
+ repeated MaintenanceType values = 8;
+ optional string errorMsg = 2;
+}
+
+message MaintenanceTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message MaintenanceTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message MaintenanceTypeStoreRequest {
+ required MaintenanceType value = 1;
+ optional string transactionId = 2;
+}
+
+message MaintenanceTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

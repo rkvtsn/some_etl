@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov  Date: 20.08.12  Фильтрация девайсов по временным интервалам для абонентов ЗПУ  @uiname Ограничение для режима работы 
+message SokppDeviceTimeFilter {
+ optional int64 id = 1;
+ optional int64 sokppId = 2; // Абонент ЗПУ 
+ optional int64 deviceId = 3; // Устройство 
+ optional uint64 startTime = 4; // Время начала 
+ optional uint64 endTime = 5; // Время окончания 
+}
+
+message SokppDeviceTimeFilterGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SokppDeviceTimeFilter criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SokppDeviceTimeFilterGetResponse {
+ repeated SokppDeviceTimeFilter values = 8;
+ optional string errorMsg = 2;
+}
+
+message SokppDeviceTimeFilterRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SokppDeviceTimeFilterRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SokppDeviceTimeFilterStoreRequest {
+ required SokppDeviceTimeFilter value = 1;
+ optional string transactionId = 2;
+}
+
+message SokppDeviceTimeFilterStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

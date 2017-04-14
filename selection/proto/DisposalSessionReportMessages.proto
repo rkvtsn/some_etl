@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Эта сущность преднозначена для хранения в ней всевозможных докладов УРМ-П  <p/>  Date: 03.09.12  Time: 15:10   @author vpermyakov  @since 0.2.10-SNAPSHOT   @uiname Доклад 
+message DisposalSessionReport {
+ optional int64 id = 1;
+ optional string reportType = 2; // Тип доклада 
+ optional string comment = 3; // Комментарий к докладу 
+ optional string reportString = 4; // Строка хранящая в себе непосредственное содержание доклада  Например для доклада о готовности вид строки будет примерно таким с2р3+р66- 
+ optional uint64 sendDate = 5; // "Дата и время отправки" 
+ optional uint64 receiveDate = 6; // "Дата и время получения" 
+ optional uint64 receiptDate = 7; // Дата и время квитирования 
+ optional int64 disposalSessionDeviceTypeId = 8; // Идентификатор типа к которому привязан доклад 
+}
+
+message DisposalSessionReportGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalSessionReport criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalSessionReportGetResponse {
+ repeated DisposalSessionReport values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionReportRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionReportRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionReportStoreRequest {
+ required DisposalSessionReport value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionReportStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

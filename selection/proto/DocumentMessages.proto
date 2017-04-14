@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Документ.    @author artyom  @author aemaeth  @author sis    @uiname Документ   
+message Document {
+ optional int64 id = 1;
+ optional string title = 2; // Название документа. 
+ optional string orderNumber = 3; // Номер приказа. 
+ optional uint64 date = 4; // Дата документа. 
+ optional string signedBy = 5; // Кем подписан. 
+ optional string cipher = 6; // Шифр. 
+ optional bytes image = 7; // Картинка. 
+ optional string type = 8; // Тип файла картинки 
+}
+
+message DocumentGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Document criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DocumentGetResponse {
+ repeated Document values = 8;
+ optional string errorMsg = 2;
+}
+
+message DocumentRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DocumentRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DocumentStoreRequest {
+ required Document value = 1;
+ optional string transactionId = 2;
+}
+
+message DocumentStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

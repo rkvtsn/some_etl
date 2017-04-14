@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Принадлежность КА    @author alex  @author sis    @uiname Принадлежность КА 
+message SpacecraftOwner {
+ optional int64 id = 1;
+ optional string shortName = 2; // Краткое наименование 
+ optional string fullName = 3; // Полное наименование 
+ optional uint64 startTime = 4; // Время начала 
+ optional uint64 endTime = 5; // Время окончания 
+}
+
+message SpacecraftOwnerGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SpacecraftOwner criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SpacecraftOwnerGetResponse {
+ repeated SpacecraftOwner values = 8;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftOwnerRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftOwnerRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftOwnerStoreRequest {
+ required SpacecraftOwner value = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftOwnerStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

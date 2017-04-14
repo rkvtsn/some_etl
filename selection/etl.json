@@ -1,0 +1,22 @@
+{
+  "radient": {
+    "uniques": [ "target.persons_id" ],
+    "tables": [
+      {
+        "target.persons_id": "persons_1.id",
+        "target.years_of_life": "persons_1.age",
+        "target.fullname": "persons_1.name"
+      },
+      {
+        "target.persons_id": "persons_2.id",
+        "target.years_of_life": "persons_2.age",
+        "target.fullname": "persons_2.name",
+        "target.some": {
+          "expression": [
+            "x['persons_2'].name"
+          ]
+        }
+      }
+    ]
+  }
+}

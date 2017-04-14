@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //Объект класса представляет собой состояние бортовой аппаратуры.   @author astamir  @uiname Состояние БА 
+message EquipmentState {
+ optional int64 id = 1;
+ optional int64 ownerId = 2; // Принадлежность 
+ optional string name = 3; // Обозначение. 
+ optional string state = 4; // Состояние 
+}
+
+message EquipmentStateGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional EquipmentState criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message EquipmentStateGetResponse {
+ repeated EquipmentState values = 8;
+ optional string errorMsg = 2;
+}
+
+message EquipmentStateRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message EquipmentStateRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message EquipmentStateStoreRequest {
+ required EquipmentState value = 1;
+ optional string transactionId = 2;
+}
+
+message EquipmentStateStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

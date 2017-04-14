@@ -1,0 +1,10 @@
+urllib3>1.2
+requests
+stompest
+sqlalchemy
+pandas
+.\addons\lxml-3.7.3-cp27-cp27m-win_amd64.whl
+protobuf==3.0.0
+stompest.async
+twisted
+protobuf-to-dict

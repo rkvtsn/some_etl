@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представлят ограничение по суткам и определяет суточные рамки возможного интервала  проведения сеанса. Пример ограничения по суткам : [9:00; 12:00].      @see ZoneRestriction  @see EventRestriction  @see TimeRestriction  @author Astamir    @uiname Ограничение по суткам 
+message DailyRestriction {
+ optional int64 id = 1;
+ optional uint64 lowTime = 2; // Нижняя граница суточного времени 
+ optional uint64 highTime = 3; // Верхняя граница суточного времени 
+ optional int32 index = 4;
+ optional int64 controlSessionId = 5;
+}
+
+message DailyRestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DailyRestriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DailyRestrictionGetResponse {
+ repeated DailyRestriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message DailyRestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DailyRestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DailyRestrictionStoreRequest {
+ required DailyRestriction value = 1;
+ optional string transactionId = 2;
+}
+
+message DailyRestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

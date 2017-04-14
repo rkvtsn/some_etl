@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Класс для хранения значений(весов) при расчёте приоритетов   для различных сущностей  (OrbitType, SpacecraftOwner, EquipmentState)  @author savva   @uiname Весовые коэфициенты приоритетов 
+message PrioritiesProperties {
+ optional int64 id = 1;
+ optional string className = 2; // Имя сущности 
+ optional string nameKey = 3; // вторичный ключ 
+ optional int32 value = 4; // значение 
+}
+
+message PrioritiesPropertiesGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional PrioritiesProperties criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message PrioritiesPropertiesGetResponse {
+ repeated PrioritiesProperties values = 8;
+ optional string errorMsg = 2;
+}
+
+message PrioritiesPropertiesRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message PrioritiesPropertiesRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message PrioritiesPropertiesStoreRequest {
+ required PrioritiesProperties value = 1;
+ optional string transactionId = 2;
+}
+
+message PrioritiesPropertiesStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

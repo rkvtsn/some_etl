@@ -1,0 +1,59 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой заявку на сеансы связи.    @author son    @uiname Заявка 
+message Request {
+ optional int64 id = 1;
+ optional string userName = 2; // Пользователь, создавший заявку. 
+ optional uint64 requestDate = 3; // Время (дата) заявки. 
+ optional int64 controlCenterId = 4; // ЦУП (ПУ) - источник заявки 
+ optional uint64 sentTime = 5; // Время выдачи (отправки) заявки на сервер 
+ optional uint64 receiveTime = 6; // Время получения заявки (сохранения ее в БД) 
+ optional uint64 pikReceiveTime = 7; // Время квитирования заявки (получения ее в ПК ПиК) 
+ repeated int64 sessionsId = 8; // Список сеансов связи, включенных в состав заявки. 
+ optional bool inSchedule = 9; // Признак включения в план. 
+ optional bool inCommonRequest = 10; // Признак включения в Обобщенную Заявку (ОЗ). 
+ optional bool markAsIgnored = 11; // Признак того, что в заявке проигнорированы допустимые конфликты   и согласованные недостоверные данных 
+ optional bool excluded = 12; // Признак того, что отправленная заявка исключена из рассмотрения  
+ optional bool forCommon = 13; // Признак того, что заявка отправлена для планирования в ПК ПСиДК  
+ optional bool createdInFarSpace = 14; // Признак того, что заявка создана в ПК ПСиДК 
+ optional string fromPK = 15; // Откуда поступила заявка: ФЗ, ПиК или СиДК   Необходимо для планирования в ПК ПиК или ПК СиДК 
+ optional string note = 16; // Примечание. 
+}
+
+message RequestGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Request criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RequestGetResponse {
+ repeated Request values = 8;
+ optional string errorMsg = 2;
+}
+
+message RequestRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RequestRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RequestStoreRequest {
+ required Request value = 1;
+ optional string transactionId = 2;
+}
+
+message RequestStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 12.10.11  Time: 12:43   @uiname Неисправность системы 
+message SystemMalfunction {
+ optional int64 id = 1;
+ optional int64 systemId = 2;
+ optional string reason = 3;
+ optional uint64 startTime = 4;
+ optional uint64 endTime = 5;
+}
+
+message SystemMalfunctionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SystemMalfunction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SystemMalfunctionGetResponse {
+ repeated SystemMalfunction values = 8;
+ optional string errorMsg = 2;
+}
+
+message SystemMalfunctionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SystemMalfunctionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SystemMalfunctionStoreRequest {
+ required SystemMalfunction value = 1;
+ optional string transactionId = 2;
+}
+
+message SystemMalfunctionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,62 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov  Date: 22.11.12  Требующие подтвержденния в НСИ ограничения на связь из ЦУДОСа   @uiname Ограничения требующие подтверждения 
+message RestrictionConfirm {
+ optional int64 id = 1;
+ optional int64 restrictionTypeId = 2;
+ optional uint64 startTime = 3;
+ optional uint64 endTime = 4;
+ optional uint64 startDate = 5;
+ optional uint64 endDate = 6;
+ repeated int64 restrictionStationsConfirmId = 7;
+ repeated int64 restrictionDeviceTypesConfirmId = 8;
+ repeated int64 restrictionDeviceModesConfirmId = 9;
+ repeated int64 restrictionDevicesConfirmId = 10;
+ repeated int64 restrictionSpacecraftsConfirmId = 11;
+ optional bool continuity = 12;
+ optional int32 dayOfWeek = 13;
+ optional string note = 14;
+ optional string operation = 15;
+ optional int64 channelMalfunctionId = 16;
+ optional int64 connectionRestrictionId = 17;
+ optional int64 restrictionId = 18;
+ optional int64 subscriberDeviceTimeFilterId = 19;
+}
+
+message RestrictionConfirmGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional RestrictionConfirm criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RestrictionConfirmGetResponse {
+ repeated RestrictionConfirm values = 8;
+ optional string errorMsg = 2;
+}
+
+message RestrictionConfirmRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RestrictionConfirmRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RestrictionConfirmStoreRequest {
+ required RestrictionConfirm value = 1;
+ optional string transactionId = 2;
+}
+
+message RestrictionConfirmStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

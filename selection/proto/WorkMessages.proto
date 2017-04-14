@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Планируемая работа из ТЦУ {@link #controlOperationGroup}   с режимами основного средства управления {@link #workModes}   @author oxana    @uiname Планируемая работа из ТЦУ  
+message Work {
+ optional int64 id = 1;
+ optional int64 controlOperationGroupId = 2; //Ссылка на ТЦУ 
+ optional int64 bundleId = 3;
+ optional uint64 startTime = 4; // Предполагаемое время начала сеанса 
+ optional uint64 endTime = 5; // Предполагаемое время окончания сеанса 
+ repeated int64 workModesId = 6; // Режимы основного средства управления  
+ optional string serializedDays = 7;
+ optional int64 spacecraftOutlineId = 8;
+}
+
+message WorkGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Work criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message WorkGetResponse {
+ repeated Work values = 8;
+ optional string errorMsg = 2;
+}
+
+message WorkRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message WorkRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message WorkStoreRequest {
+ required Work value = 1;
+ optional string transactionId = 2;
+}
+
+message WorkStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

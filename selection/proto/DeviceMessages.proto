@@ -1,0 +1,72 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //Объект класса представляет собой средство.    @author astamir  @author sis   @uiname Средство 
+message Device {
+ optional int64 id = 1;
+ optional int32 kitNumber = 2; // Номер комплекта 
+ optional string serialNumber = 3; // Заводской номер 
+ optional uint64 manufactureDate = 4; // Дата производства 
+ optional int32 squadNumber = 5; // Количество расчётов 
+ optional int64 dutyModeId = 6; // Режим несения дежурства 
+ optional string note = 7; // Примечание 
+ optional uint64 enterDate = 8; // Дата ввода 
+ optional uint64 endDate = 9; // Дата вывода 
+ optional int64 dislocationDocumentId = 10; // Документ дислокации 
+ optional uint64 arriveTimeInNonWorkTime = 11; // Время прибытия в нерабочее время 
+ optional uint64 arriveTimeInWorkTime = 12; // Время прибытия в рабочее время 
+ optional double minAngle = 13; // Минимальный угол места 
+ optional double latitude = 14; // Широта 
+ optional double longitude = 15; // Долгота 
+ optional double altitude = 16; // Высота 
+ optional bool hasSKK = 17; // Признак наличия СКК 
+ optional int64 readinessDocumentId = 18; // Документ готовности 
+ optional int64 stationId = 19;
+ optional int64 antennaId = 20; // Антенна 
+ optional int64 deviceTypeId = 21; // Тип средства. 
+ optional int64 readinessTypeId = 22; // Тип готовности. 
+ repeated int64 considerLinkId = 23; // Необходимость учитывать связь средств 
+ repeated int64 linkedDevicesId = 24; // Связанные средства 
+ repeated int64 workingHistoryId = 25; // История наработки 
+ repeated int64 exploitationHistoryId = 26; // История эксплуатации 
+ repeated int64 categoryHistoryId = 27; // История категорий 
+ repeated int64 readinessId = 28;
+ optional int64 documentId = 29; // Документ 
+}
+
+message DeviceGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Device criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DeviceGetResponse {
+ repeated Device values = 8;
+ optional string errorMsg = 2;
+}
+
+message DeviceRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DeviceRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DeviceStoreRequest {
+ required Device value = 1;
+ optional string transactionId = 2;
+}
+
+message DeviceStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

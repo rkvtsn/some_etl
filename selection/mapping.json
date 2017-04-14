@@ -1,0 +1,63 @@
+{
+  "radient": [
+    {
+      "rpsn_main.unique": "uch.uchid",
+      "vvst_nom.unique": "uch.uchid",
+      "vvst_nom.vin_nom": "uch.uchzavnumber",
+      "vvst_nom.name_full": "uch.uchgroupname",
+      "rpsn_main.nazn_vvst": "uch.uchgroupnaznach",
+      "rpsn_main.description_vvst": "uch.uchdescr",
+      "rpsn_main.kod_kvt_mo": "uch.uchgroupcode",
+      "rpsn_main.name_vvst": "uch.uchgroupname",
+      "rpsn_main.kod_ekps": "uch.uchgroupcode",
+      "rpsn_main.srok_expl": "uch.uchgroupgarantyear",
+      "rpsn_main.srok_spis": "uch.uchsetnar",
+      "rpsn_main.res_expl": "uch.uchgroupgarantnar"
+    },
+    {
+      "rpsn_main.unique": "spacecraft.spacecraftid",
+      "vvst_nom.unique": "spacecraft.spacecraftid",
+      "vvst_nom.vin_nom": "spacecraft.spacecraftnumber",
+      "vvst_nom.name_full": "spacecraft.spacecraftname",
+      "rpsn_main.shifr_vvst": "spacecraft.spacecraftname",
+      "rpsn_main.index_vvst": "spacecraft.spacecraftindex"
+    },
+    {
+      "rpsn_main.unique": "ziprem.zipremid",
+      "vvst_nom.unique": "ziprem.zipremid",
+      "vvst_nom.vin_nom": "ziprem.uchzavnumber",
+      "vvst_nom.name_full": "ziprem.uchgroupname",
+      "rpsn_main.nazn_vvst": "ziprem.uchgroupnaznach",
+      "rpsn_main.description_vvst": "ziprem.uchdescr",
+      "rpsn_main.kod_kvt_mo": "ziprem.uchgroupcode",
+      "rpsn_main.name_vvst": "ziprem.uchgroupname",
+      "rpsn_main.kod_ekps": "ziprem.uchgroupcode",
+      "rpsn_main.srok_expl": "ziprem.uchgroupgarantyear",
+      "rpsn_main.srok_spis": "ziprem.uchsetnar",
+      "rpsn_main.res_expl": "ziprem.uchgroupgarantnar"
+    }
+  ],
+  "integration": [
+    {
+      "rpsn_main.shifr_vvst": "spacecrafttype.shortname",
+      "rpsn_main.type_tech_id": "spacecrafttype.view",
+      "rpsn_main.index_vvst": "spacecrafttype.index",
+      "rpsn_main.description_vvst": "spacecrafttype.note",
+      "rpsn_main.name_vvst": "spacecrafttype.fullname",
+      "rpsn_main.org_razrab_id": "spacecrafttype.developerid",
+      "rpsn_main.srok_expl": "spacecrafttype.gsas",
+      "rpsn_main.image_vvst": "spacecrafttype.image"
+    },
+    {
+      "rpsn_main.shifr_vvst": "devicetype.shortname",
+      "rpsn_main.index_vvst": "devicetype.index",
+      "rpsn_main.description_vvst": "devicetype.note",
+      "rpsn_main.name_vvst": "devicetype.fullname",
+      "rpsn_main.org_razrab_id": "devicetype.developerid",
+      "rpsn_main.kod_kvt_mo": "devicetype.kvtmo",
+      "rpsn_main.res_expl": "devicetype.warrantyyears",
+      "rpsn_main.nazn_vvst": "devicetype.deviceclassid",
+      "rpsn_main.id_int": "devicetype.id"
+    }
+  ]
+}

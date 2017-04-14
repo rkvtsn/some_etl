@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет ограничение по времени между сеансами управления. Данное ограничение  определяет время между планированием соседних сеансов управления в виде [low;high]. Если  какая-либо из границ равна 0, она исключается из рассмотрения.      @see ZoneRestriction  @see EventRestriction  @see DailyRestriction  @author Astamir    @uiname Ограничение по времени между сеансами управления 
+message TimeRestriction {
+ optional int64 id = 1;
+ optional uint64 low = 2; // Нижняя граница ограничения. 
+ optional uint64 high = 3; // Верхняя граница ограничения. 
+ optional string description = 4; // Описание ограничения 
+ optional string restrictionTimeRelationString = 5;
+ optional int32 index = 6;
+ optional int64 controlSessionId = 7;
+}
+
+message TimeRestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional TimeRestriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message TimeRestrictionGetResponse {
+ repeated TimeRestriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message TimeRestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message TimeRestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message TimeRestrictionStoreRequest {
+ required TimeRestriction value = 1;
+ optional string transactionId = 2;
+}
+
+message TimeRestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

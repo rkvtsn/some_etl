@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой тип ограничения. Тип ограничения определяется его кодом  {@link #code}. Для ограничения может быть задано его имя {@link #name}, список разрешённых  режимов {@link #restrictionTypeModes}, признак вывода из эксплуатации  {@link #decommissioning}, признак разрешения {@link #dpermission} (если признак разрешения-true,  то разрешение рассматривается как разрешение)    @author Artyom    @uiname Тип ограничения   
+message RestrictionType {
+ optional int64 id = 1;
+ optional int32 code = 2; // Код ограничения. 
+ optional string name = 3; // Наименование ограничения. 
+ optional uint64 duration = 4; // Продолжительность. 
+ repeated int64 restrictionTypeModesId = 5; // Разрешающие режимы. 
+ optional bool retirement = 6; // Признак вывода из НКУ. 
+ optional bool userRestriction = 7; // Признак "Пользовательские" 
+ optional bool allowLastDayUse = 8; // Разрешать использование в последний день. (?) 
+}
+
+message RestrictionTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional RestrictionType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RestrictionTypeGetResponse {
+ repeated RestrictionType values = 8;
+ optional string errorMsg = 2;
+}
+
+message RestrictionTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RestrictionTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RestrictionTypeStoreRequest {
+ required RestrictionType value = 1;
+ optional string transactionId = 2;
+}
+
+message RestrictionTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

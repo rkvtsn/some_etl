@@ -1,0 +1,56 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой план применения средств на сутки {@link #date}. Изначально план  имеет нулевую ревизию {@link #revision}. План хранит информацию о пользователе, который создал  план {@link #userName}, признак реализации {@link #done}, признак наличия конфликтов  {@link #hasConflict} и список включенных сеансов {@link sessions} При утверждении плана задаётся  время и дата его утверждения {@link #approvalDate}.   @author Artyom    @uiname План  
+message Schedule {
+ optional int64 id = 1;
+ optional uint64 date = 2; // Дата, на которую предназначен план. 
+ optional int32 revision = 3; // Номер ревизии плана. 
+ optional uint64 lastCorrectionTime = 4; // Время последней коррекции. 
+ optional string userName = 5; // Пользователь, создавший план. 
+ optional bool done = 6; // Признак реализации плана. 
+ optional uint64 approvalDate = 7; // Дата утверждения плана. 
+ optional bool hasConflict = 8; // Признак наличия конфликта в плане. 
+ optional bool sidk = 9; // Признак плана среднего и дальнего космоса. 
+ repeated int64 sessionsId = 10; // Набор сеансов связи, включённых в план согласно включённым заявкам. 
+ optional int64 documentId = 11; // Документ утверждения плана 
+ optional int64 original = 12; // null- исходный и/или утвержденный план, если not null то это ссылка  на оригинальный план 
+ optional string serializedPenalty = 13; // Сериализованное представление перечня штрафов. 
+}
+
+message ScheduleGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Schedule criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ScheduleGetResponse {
+ repeated Schedule values = 8;
+ optional string errorMsg = 2;
+}
+
+message ScheduleRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ScheduleRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ScheduleStoreRequest {
+ required Schedule value = 1;
+ optional string transactionId = 2;
+}
+
+message ScheduleStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,34 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "DBUsersProtos";
+
+message UserGroups {
+    required string groupName = 1;
+    required int32 groupSysId = 2;
+    repeated int32 groupList = 3;
+}
+
+message GetUserGroupsRequest {
+}
+
+message GetUserGroupsResponse {
+    repeated UserGroups userGroups = 1;
+}
+
+message DBUser {
+    required string userName = 1;
+    required int32 sysId = 2;
+    required bool createDB = 3;
+    required bool superUser = 4;
+    required bool catupd = 5;
+}
+
+message GetDBUsersRequest {
+}
+
+message GetDBUsersResponse {
+    repeated DBUser users = 1;
+}
+

@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Праздничные дни  @author savva   @uiname Праздничные дни 
+message Holidays {
+ optional int64 id = 1;
+ optional string name = 2; // краткое наименование. 
+ optional int32 startDay = 3; // Дата начала 
+ optional int32 startMonth = 4;
+ optional int32 endDay = 5; // Дата окончания 
+ optional int32 endMonth = 6;
+ optional bool transfer = 7; // Признак переноса 
+ optional string note = 8; // Примечание 
+}
+
+message HolidaysGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Holidays criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message HolidaysGetResponse {
+ repeated Holidays values = 8;
+ optional string errorMsg = 2;
+}
+
+message HolidaysRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message HolidaysRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message HolidaysStoreRequest {
+ required Holidays value = 1;
+ optional string transactionId = 2;
+}
+
+message HolidaysStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

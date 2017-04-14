@@ -1,0 +1,10 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "RequestSerial";
+
+message MsgHeader {
+    required string msgClass = 1;
+    required int32 msgSize = 2;
+}

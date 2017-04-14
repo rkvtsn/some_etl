@@ -1,0 +1,201 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "ScheduleProtos";
+
+message SessionChange {
+    optional int64 correctedSessionId = 1;
+    optional int64 sessionId = 2;
+    optional int64 correctionId = 3;
+    required int32 revision = 4;
+}
+
+message MakeCorrectionReportRequest {
+    required int64 scheduleId = 1;
+    optional int32 revision = 2;
+}
+
+message MakeCorrectionReportResponse {
+    repeated SessionChange sessionChange = 1;
+}
+
+
+message ScheduleStat {
+    required int64 date = 1;
+    optional int64 approvalDate = 2;
+    required int32 umnNumber = 3;
+    required int32 sessionNumber = 4;
+    required int32 correctionNumber = 5;
+}
+
+message ScheduleStatRequest {
+    required int64 startDate = 1;
+    required int64 endDate = 2;
+}
+
+message ScheduleStatResponse {
+    repeated ScheduleStat scheduleStat = 1;
+}
+
+message RequestStat {
+    required int64 date = 1;
+    required int32 requestNumber = 2;
+}
+
+message RequestStatRequest {
+    required int64 startDate = 1;
+    required int64 endDate = 2;
+}
+
+message RequestStatResponse {
+    repeated RequestStat requestStat = 1;
+}
+
+message RequestByDateRequest {
+    required int64 requestDate = 1;
+}
+
+message RequestByDateResponse {
+    repeated RequestByDate requestByDate = 1;
+}
+
+
+message RequestByDate {
+    optional string cyp = 1;
+    optional string schedulerPhone = 2;
+    required int32 kaNumber = 3;
+    required int32 sessionNumber = 4;
+    optional string frompk = 5;
+    optional int64 sentTime = 6;
+    optional int64 pikReceiveTime = 7;
+    optional bool inSchedule = 8;
+    optional bool markAsIgnored = 9;
+    required int64 id = 10;
+}
+
+message UmnNumberRequest {
+    required int64 requestId = 1;
+}
+
+message UmnNumberResponse {
+    repeated int32 umn = 1;
+}
+
+message MarkRequestsIgnoredRequest {
+	repeated int64 id = 1;
+}
+
+message MarkRequestIgnoredResponse {
+	repeated int64 id = 1;
+}
+
+message ScheduleDatesRequest {
+    required int64 startDate = 1;
+    required int64 endDate = 2;
+}
+
+message ScheduleDatesResponse {
+    repeated int64 scheduleDate = 1;
+}
+
+message SubscriberByDateRequest {
+    required int64 scheduleDate = 1;
+    optional string upkSubscriber = 2;
+}
+
+message SubscriberByDateResponse {
+    repeated string subscriber = 1;
+}
+
+message ExtractionForCatalog {
+    required int64 id = 1;
+    required int64 date = 2;
+    required int64 sentTime = 3;
+    optional int64 receiveTime = 4;
+}
+
+message ExtractionBySubscriberRequest {
+    required int64 scheduleDate = 1;
+    required string subscriber = 2;
+}
+
+message ExtractionBySubscriberResponse {
+    repeated ExtractionForCatalog extractionForCatalog = 1;
+}
+
+message UmnInExtractionRequest {
+    required int64 extractionId = 1;
+}
+
+message UmnInExtractionResponse {
+    repeated int32 umn = 1;
+}
+
+message ExchangeJournal {
+    optional int64 sentTime = 1;
+    optional int64 receiveTime = 2;
+    optional string cyp = 3;
+    optional string subscriber = 4;
+    optional string event = 5;
+}
+
+message AvailableJournalDatesRequest {
+    required int64 startDate = 1;
+    required int64 endDate = 2;
+}
+
+message AvailableJournalDatesResponse {
+    repeated int64 date = 1;
+}
+
+message ExchangeJournalRequest {
+    required int64 date = 1;
+    optional string cyp = 2;
+    optional string subscriber = 3;
+}
+
+message ExchangeJournalResponse {
+    repeated ExchangeJournal exchangeJournal = 1;
+}
+
+message OsvInterval {
+    required int64 spacecraftId = 1;
+    required int64 stationId = 2;
+    required uint64 startTime = 3;
+    required uint64 endTime = 4;
+    required int32 loop = 5;
+}
+
+message OsvCriteria {
+    required uint64 date = 1;
+    required int64 spacecraftId = 2;
+}
+
+message OsvIntervalSelectRequest {
+    repeated OsvCriteria criteria = 1;
+}
+
+message OsvIntervalSelectResponse {
+    repeated OsvInterval intervals = 1;
+}
+
+
+message SpacecraftIdAndUmnPair {
+    required int64 spacecraftId = 1;
+    required int32 umn = 2;
+}
+
+message UmnListSelectRequest {
+    required uint64 scheduleDate = 1;
+
+}
+
+message UmnListSelectResponse {
+    repeated SpacecraftIdAndUmnPair umns = 1;
+}
+
+message FastUmnListSelectRequest {
+    required uint64 scheduleDate = 1;
+
+}

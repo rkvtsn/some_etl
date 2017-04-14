@@ -1,0 +1,53 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса хранит коррекцию сессии утвержденного плана. Коррекция включает изменение  в одном сеансе.   @author sis  @author george  @uiname Коррекция 
+message Correction {
+ optional int64 id = 1;
+ optional string cause = 2; // Причина изменения. 
+ optional string causeText = 3; // Содержание изменения. 
+ optional int32 revision = 4; // Номер ревизии плана. 
+ optional uint64 correctionTime = 5; // Время изменения. 
+ optional string userName = 6; // Кто изменил. 
+ optional string customer = 7; // Заказчик изменения 
+ optional int64 scheduleId = 8; // Ссылка на план 
+ optional int64 sessionId = 9; // Сссылка на сессию (если пусто, значит сеанс был удален из плана) 
+ optional bool markedAsOnlyBallistic = 10;
+}
+
+message CorrectionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Correction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message CorrectionGetResponse {
+ repeated Correction values = 8;
+ optional string errorMsg = 2;
+}
+
+message CorrectionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message CorrectionStoreRequest {
+ required Correction value = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

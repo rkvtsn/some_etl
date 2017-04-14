@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Частота.    @author alex  @author aemaeth  @author sis    @uiname Частота   
+message Frequency {
+ optional int64 id = 1;
+ optional string letter = 2; // Литера 
+ optional string frequency = 3; // Частота в комплексе СОКПП 
+}
+
+message FrequencyGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Frequency criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message FrequencyGetResponse {
+ repeated Frequency values = 8;
+ optional string errorMsg = 2;
+}
+
+message FrequencyRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message FrequencyRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message FrequencyStoreRequest {
+ required Frequency value = 1;
+ optional string transactionId = 2;
+}
+
+message FrequencyStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

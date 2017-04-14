@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Связка ГОУ.   @uiname Связка ГОУ 
+message ControlOperationGroupBundle {
+ optional int64 id = 1;
+ optional string name = 2; // Название связки ГОУ, 
+ optional string note = 3; // Примечание. 
+ repeated int64 groupsId = 4; // Последовательность групп операций управления. 
+ optional int64 controlCycleId = 5; // Ссылка на ТЦУ, который нами "владеет" 
+ optional int32 bundleOffset = 6; // Время после выполнения связки ГОУ, (секунды) 
+ optional int32 index = 7; // Индекс связки. 
+}
+
+message ControlOperationGroupBundleGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlOperationGroupBundle criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlOperationGroupBundleGetResponse {
+ repeated ControlOperationGroupBundle values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationGroupBundleRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationGroupBundleRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationGroupBundleStoreRequest {
+ required ControlOperationGroupBundle value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationGroupBundleStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

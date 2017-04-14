@@ -1,0 +1,63 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "AdminProtos";
+
+enum LogLevel {
+    FATAL = 1;
+    ERROR = 2;
+    WARN = 3;
+    INFO = 4;
+    DEBUG = 5;
+    TRACE = 6;
+}
+
+message LogRecord {
+    required string timeString = 1;
+    required string unit = 2;
+    required LogLevel level = 3;
+    required string message = 4;
+}
+
+message SelectLogRequest {
+    required uint64 startDate = 1;
+    required uint64 endDate = 2;
+    required string arm = 3;
+    required string pk = 4;
+}
+
+message SelectLogResponse {
+    repeated LogRecord logRecords = 1;
+}
+
+message PingWorkstationsRequest {
+    repeated int64 workstations = 1;
+}
+
+message OnlineState {
+    required uint64 lastPingAttempt = 1;
+    required bool online = 2;
+}
+
+message PingWorkstationsResponse {
+    repeated OnlineState states = 1;
+}
+
+message ActivateModeRequest {
+    required int64 modeId = 1;
+}
+
+message ActivateModeResponse {
+    optional string errorMsg = 1;
+}
+
+message ActiveModeRequest {
+
+}
+
+message ActiveModeResponse {
+    required bool hasActiveMode = 1;
+    optional int64 activeModeId = 2;
+    optional string errorMsg = 3;
+}

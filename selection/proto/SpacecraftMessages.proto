@@ -1,0 +1,67 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Летательный аппарат.    @author artyom  @author sis    @uiname Летательный аппарат  
+message Spacecraft {
+ optional int64 id = 1;
+ optional int64 documentId = 2; // Документ 
+ optional uint64 creationDate = 3; // Дата ввода 
+ optional uint64 startDate = 4; // Дата начала работ - ввода в эксплуатацию 
+ optional uint64 endDate = 5; // Дата и время прекращения работ 
+ optional int64 finishWorkTypeId = 6; // Тип окончания существования  
+ optional string flyingNumber = 7; // Лётный номер 
+ optional bool inOOG = 8; // Признак включения в ООГ 
+ optional string internationalNumber = 9; // Международный номер 
+ optional string itarName = 10; // Наименование по итар-тасс 
+ optional int64 launchMethodId = 11; // Способ выведения на орбиту 
+ optional int64 ownerId = 12; // Принадлежность КА 
+ optional int32 priority = 13; // Приоритет 
+ optional string serialNumber = 14; // Серийный номер 
+ optional string systemNumber = 15; // Системный номер 
+ optional string numbersNote = 16; // Примечание для номеров КА 
+ optional int32 umn = 17; // Уникальный машинный номер (УМН) 
+ optional int64 umnDocumentId = 18; // Документ УМН 
+ optional int64 programId = 19; // Программа 
+ optional int64 typeId = 20; // Тип ЛА 
+ optional int64 orbitId = 21; // Орбита 
+ repeated int64 stagesId = 22; // История этапов функционирования 
+ repeated int64 equipmentStateHistoryId = 23;
+ repeated int64 spacecraftExploitationId = 24; // История эксплуатации ЛА 
+}
+
+message SpacecraftGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Spacecraft criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SpacecraftGetResponse {
+ repeated Spacecraft values = 8;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftStoreRequest {
+ required Spacecraft value = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Тип орбиты    @author alex  @author sis    @uiname Тип орбиты   
+message OrbitType {
+ optional int64 id = 1;
+ optional int32 number = 2; // Номер типа орбиты 
+ optional string name = 3; // Наименование 
+}
+
+message OrbitTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional OrbitType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OrbitTypeGetResponse {
+ repeated OrbitType values = 8;
+ optional string errorMsg = 2;
+}
+
+message OrbitTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OrbitTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OrbitTypeStoreRequest {
+ required OrbitType value = 1;
+ optional string transactionId = 2;
+}
+
+message OrbitTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

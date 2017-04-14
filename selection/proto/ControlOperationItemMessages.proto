@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой некоторую атомарную единицу управления - набор команд которые  нужно выполнять. Определяется номером средства {@link #deviceType} и набором режимов его  функционирования {@link #modes}.    @author Astamir    @uiname Единица управления 
+message ControlOperationItem {
+ optional int64 id = 1;
+ optional int64 deviceTypeId = 2; // Номер средства 
+ repeated int64 modesId = 3; // Список режимов функционирования 
+ optional int32 index = 4;
+ optional int64 controlOperationId = 5;
+}
+
+message ControlOperationItemGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlOperationItem criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlOperationItemGetResponse {
+ repeated ControlOperationItem values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationItemRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationItemRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationItemStoreRequest {
+ required ControlOperationItem value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationItemStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

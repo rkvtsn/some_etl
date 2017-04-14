@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 13.10.11  Time: 13:11   @uiname Неисправность канала связи 
+message ChannelMalfunction {
+ optional int64 id = 1;
+ optional int64 channelId = 2;
+ optional int64 directionFromId = 3;
+ optional int64 directionToId = 4;
+ optional string reason = 5;
+ optional uint64 startTime = 6;
+ optional uint64 endTime = 7;
+}
+
+message ChannelMalfunctionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ChannelMalfunction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ChannelMalfunctionGetResponse {
+ repeated ChannelMalfunction values = 8;
+ optional string errorMsg = 2;
+}
+
+message ChannelMalfunctionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ChannelMalfunctionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ChannelMalfunctionStoreRequest {
+ required ChannelMalfunction value = 1;
+ optional string transactionId = 2;
+}
+
+message ChannelMalfunctionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

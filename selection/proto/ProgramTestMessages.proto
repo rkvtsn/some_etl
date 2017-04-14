@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author savva   @uiname Программа испытаний 
+message ProgramTest {
+ optional int64 id = 1;
+ optional string ownage = 2; // Принадлежность 
+ optional string note = 3; // Примечание 
+}
+
+message ProgramTestGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ProgramTest criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ProgramTestGetResponse {
+ repeated ProgramTest values = 8;
+ optional string errorMsg = 2;
+}
+
+message ProgramTestRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ProgramTestRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ProgramTestStoreRequest {
+ required ProgramTest value = 1;
+ optional string transactionId = 2;
+}
+
+message ProgramTestStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

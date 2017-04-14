@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 20.08.12  Фильтрация девайсов по временным интервалам для абонентов ЦУП  @uiname Ограничение для абонента ЦУП 
+message SubscriberDeviceTimeFilter {
+ optional int64 id = 1;
+ optional int64 subscriberId = 2; // Абонент ЦУП 
+ optional int64 deviceId = 3; // Устройство 
+ optional uint64 startTime = 4; // Время начала действия ограничения. 
+ optional uint64 startDate = 5; // Дата начала действия ограничения. 
+ optional uint64 endTime = 6; // Время окончания действия ограничения. 
+ optional uint64 endDate = 7; // Дата окончания действия ограничения 
+}
+
+message SubscriberDeviceTimeFilterGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SubscriberDeviceTimeFilter criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SubscriberDeviceTimeFilterGetResponse {
+ repeated SubscriberDeviceTimeFilter values = 8;
+ optional string errorMsg = 2;
+}
+
+message SubscriberDeviceTimeFilterRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SubscriberDeviceTimeFilterRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SubscriberDeviceTimeFilterStoreRequest {
+ required SubscriberDeviceTimeFilter value = 1;
+ optional string transactionId = 2;
+}
+
+message SubscriberDeviceTimeFilterStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,53 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Антенная система.    @author alex  @author sis  @author astamir    @uiname Антенная система   
+message Antenna {
+ optional int64 id = 1;
+ optional string serialNumber = 2; // Заводской номер 
+ optional uint64 manufactureDate = 3; // Дата производства 
+ optional uint64 enterDate = 4; // Дата ввода в эксплуатацию 
+ optional uint64 endDate = 5; // Дата вывода из эксплуатации 
+ optional int64 documentId = 6; // Документ 
+ optional int64 antennaTypeId = 7; // Тип антенной системы 
+ optional int64 developerId = 8; // Разработчик 
+ repeated int64 exploitationHistoryId = 9; // История эксплуатации 
+ repeated int64 categoryHistoryId = 10; // История категорий 
+}
+
+message AntennaGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Antenna criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message AntennaGetResponse {
+ repeated Antenna values = 8;
+ optional string errorMsg = 2;
+}
+
+message AntennaRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message AntennaRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message AntennaStoreRequest {
+ required Antenna value = 1;
+ optional string transactionId = 2;
+}
+
+message AntennaStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //   @author aemaeth  @uiname Запуск  
+message Launch {
+ optional int64 id = 1;
+ optional string launchName = 2;
+ optional int32 launchYear = 3;
+ optional int64 historyHeadId = 4;
+ optional int64 preciseLaunchTimeId = 5; // Точное временя пуска 
+}
+
+message LaunchGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Launch criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message LaunchGetResponse {
+ repeated Launch values = 8;
+ optional string errorMsg = 2;
+}
+
+message LaunchRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message LaunchRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message LaunchStoreRequest {
+ required Launch value = 1;
+ optional string transactionId = 2;
+}
+
+message LaunchStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

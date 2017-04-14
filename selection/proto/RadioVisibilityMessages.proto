@@ -1,0 +1,54 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект данного класса представляет собой зону радиовидимости (ЗРВ).    @author Artyom    @uiname ЗРВ   
+message RadioVisibility {
+ optional int64 id = 1;
+ optional uint64 startTime = 2; // Конец действия ЗРВ 
+ optional uint64 endTime = 3; // Начало действия ЗРВ 
+ optional double startAzimuth = 4; // Азимут входа в ЗРВ. 
+ optional double endAzimuth = 5; // Азимут выхода из ЗРВ. 
+ optional int64 stationId = 6; // Пункт, для которого рассчитана ЗРВ. 
+ optional int64 spacecraftId = 7; // Космический аппарат, для которого рассчитана ЗРВ. 
+ optional int32 loop = 8; // Номер витка. 
+ optional uint64 equatorTime = 9; // Время экватора. 
+ optional double maxAngle = 10; // Минимальный угол. 
+ optional double minAngle = 11; // Максимальный угол. 
+}
+
+message RadioVisibilityGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional RadioVisibility criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RadioVisibilityGetResponse {
+ repeated RadioVisibility values = 8;
+ optional string errorMsg = 2;
+}
+
+message RadioVisibilityRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RadioVisibilityRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RadioVisibilityStoreRequest {
+ required RadioVisibility value = 1;
+ optional string transactionId = 2;
+}
+
+message RadioVisibilityStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

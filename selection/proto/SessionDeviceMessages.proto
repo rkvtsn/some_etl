@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Определяет конкретное средство и список режимов.    @author Artyom    @uiname Средство и список режимов сессии 
+message SessionDevice {
+ optional int64 id = 1;
+ optional int64 deviceId = 2; // Конкретное средство, используемое в сеансе. 
+ repeated int64 modeSessionDeviceId = 3; // Список режимов, которые используются в сеансе. 
+ optional uint64 preDuration = 4; // Время, требуемое на подготовку к сеансу 
+ optional uint64 postDuration = 5; // Время, требуемое на постобработку после сеанса 
+ optional int64 sessionId = 6; // Идентификатор сессии, к которой относится данный набор режимов со средством. 
+}
+
+message SessionDeviceGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SessionDevice criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SessionDeviceGetResponse {
+ repeated SessionDevice values = 8;
+ optional string errorMsg = 2;
+}
+
+message SessionDeviceRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SessionDeviceRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SessionDeviceStoreRequest {
+ required SessionDevice value = 1;
+ optional string transactionId = 2;
+}
+
+message SessionDeviceStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

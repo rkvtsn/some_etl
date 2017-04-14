@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Created by IntelliJ IDEA.  User: vfoteeva  Date: 23.09.11  Time: 11:27   @uiname Система 
+message ConnectionSystem {
+ optional int64 id = 1;
+ optional int64 systemNumber = 2;
+ optional string systemDescription = 3;
+}
+
+message ConnectionSystemGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ConnectionSystem criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ConnectionSystemGetResponse {
+ repeated ConnectionSystem values = 8;
+ optional string errorMsg = 2;
+}
+
+message ConnectionSystemRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionSystemRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ConnectionSystemStoreRequest {
+ required ConnectionSystem value = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionSystemStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

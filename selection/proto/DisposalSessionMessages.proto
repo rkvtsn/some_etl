@@ -1,0 +1,59 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Распоряжение это выписка сессии из расписания.   @author sstepanov   @uiname Распоряжение 
+message DisposalSession {
+ optional int64 id = 1;
+ optional int64 sessionId = 2; // Идентификатор сессии к которой привязано распоряжение  nullable потому что появились распоряжения созданные вручную(не привязанные к сессии) 
+ optional int32 stationNumber = 3; // Номер ОКИКа 
+ optional int32 umn = 4; // Уникальный машинный номер КА 
+ optional int64 spacecraftTypeNumber = 5; // Номер типа КА (нужен для статистики)  @since 0.2.10-SNAPSHOT 
+ optional uint64 startTime = 6; // Время начала сеанса 
+ optional uint64 endTime = 7; // Время конца сеанса 
+ optional int32 loop = 8; // Виток 
+ optional uint64 equatorTime = 9; // Время экватора 
+ optional uint64 opDate = 10; // Дата оперативного плана  (Дата плана применения НАКУ) 
+ repeated int64 disposalSessionDeviceTypesId = 11; // Cписок используемых конкретных средств и режимов. 
+ optional string transmitMode = 12; // "Способ передачи (СОКПП, ТЛГ)" 
+ optional uint64 lastUpdate = 13; // Дата последнего изенения 
+ optional bool ersatz = 14; // Сурогатная ли (вбитая по ТЛГ) сессия 
+ optional int32 revision = 15; // Номер ревизии плана по которому произошло оборачивание. 
+ optional uint64 deliverTime = 16; // Время доставки на ОКИК 
+}
+
+message DisposalSessionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalSession criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalSessionGetResponse {
+ repeated DisposalSession values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionStoreRequest {
+ required DisposalSession value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,64 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author vtrusov          Date: 18.04.12            @uiname Начальные условия 
+message OrionNuView {
+ optional int64 id = 1;
+ optional uint64 dtnu = 2;
+ optional int32 filenuPk = 3;
+ optional string protimp = 4;
+ optional int32 lsh = 5;
+ optional uint64 time = 6;
+ optional int32 vit = 7;
+ optional double vx = 8;
+ optional double vy = 9;
+ optional double vz = 10;
+ optional double x = 11;
+ optional double y = 12;
+ optional double z = 13;
+ optional double sb = 14;
+ optional int32 typenu = 15;
+ optional string nutext = 16;
+ optional string nu = 17;
+ optional int32 sk = 18;
+ optional int32 ep = 19;
+ optional int32 kont = 20;
+ optional int64 spacecraftId = 21;
+}
+
+message OrionNuViewGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional OrionNuView criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OrionNuViewGetResponse {
+ repeated OrionNuView values = 8;
+ optional string errorMsg = 2;
+}
+
+message OrionNuViewRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OrionNuViewRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OrionNuViewStoreRequest {
+ required OrionNuView value = 1;
+ optional string transactionId = 2;
+}
+
+message OrionNuViewStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

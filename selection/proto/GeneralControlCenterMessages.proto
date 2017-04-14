@@ -1,0 +1,58 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой центральное управляющее подразделение (ЦУП).  C ЦУПов поступают заявки на осуществление связи средств с ЛА в систему планирования коррекции   (СПК).      @author astamir  @author sis    @uiname ЦУП 
+message GeneralControlCenter {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование 
+ optional string shortName = 3; // Краткое наименование 
+ optional string fullName = 4; // Полное наименование 
+ optional string index = 5; // Индекс 
+ optional string building = 6; // Здание, в котором расположен пункт управления 
+ optional string room = 7; // Комната, в которой расположен пункт управления 
+ optional string place = 8; // Нименование организации, которой пренадлежит пункт управления 
+ optional bool hasURM = 9; // Наличие удалённого рабочего места 
+ optional string os = 10; // Операционная система 
+ optional string networkName = 11; // Сетевое имя 
+ optional string ip = 12; // IP адрес 
+ optional int64 developerId = 13; // Разработчик 
+ optional int64 documentId = 14; // Документ 
+ optional bool markedAsIncludedInJournal8 = 15; // Коррекции сеансов по определенным ЦУП должны попадать в 8й журнал 
+}
+
+message GeneralControlCenterGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional GeneralControlCenter criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message GeneralControlCenterGetResponse {
+ repeated GeneralControlCenter values = 8;
+ optional string errorMsg = 2;
+}
+
+message GeneralControlCenterRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message GeneralControlCenterRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message GeneralControlCenterStoreRequest {
+ required GeneralControlCenter value = 1;
+ optional string transactionId = 2;
+}
+
+message GeneralControlCenterStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

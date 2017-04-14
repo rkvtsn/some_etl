@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Оъект представляет приоритет для соответсующего КА  @author savva   @uiname Приоритет КА  
+message SpacecraftPriorities {
+ optional int64 id = 1;
+ optional int64 spacecraftId = 2; // Космический аппарат 
+ optional int32 priority = 3; // приоритет 
+ optional int64 schedulePrioritiesId = 4;
+}
+
+message SpacecraftPrioritiesGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SpacecraftPriorities criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SpacecraftPrioritiesGetResponse {
+ repeated SpacecraftPriorities values = 8;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftPrioritiesRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftPrioritiesRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftPrioritiesStoreRequest {
+ required SpacecraftPriorities value = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftPrioritiesStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 13.10.11  Time: 16:59   @uiname Неисправность магистрали 
+message LineMalfunction {
+ optional int64 id = 1;
+ optional int64 lineId = 2;
+ optional int64 startingSusId = 3;
+ optional int64 endingSusId = 4;
+ optional string reason = 5;
+ optional uint64 startTime = 6;
+ optional uint64 endTime = 7;
+}
+
+message LineMalfunctionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional LineMalfunction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message LineMalfunctionGetResponse {
+ repeated LineMalfunction values = 8;
+ optional string errorMsg = 2;
+}
+
+message LineMalfunctionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message LineMalfunctionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message LineMalfunctionStoreRequest {
+ required LineMalfunction value = 1;
+ optional string transactionId = 2;
+}
+
+message LineMalfunctionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

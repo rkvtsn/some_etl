@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой программу испытаний.    @author astamir  @author sis    @uiname Программа испытаний   
+message Program {
+ optional int64 id = 1;
+ optional string shortName = 2; // Краткое наименование 
+ optional string fullName = 3; // Полное наименование 
+ optional string trainingType = 4; // Вид тренировки 
+ optional uint64 startTime = 5; // Время начала 
+ optional uint64 endTime = 6; // Время окончания 
+ optional int64 documentId = 7; // Документ 
+ optional string note = 8; // Примечание 
+}
+
+message ProgramGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Program criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ProgramGetResponse {
+ repeated Program values = 8;
+ optional string errorMsg = 2;
+}
+
+message ProgramRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ProgramRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ProgramStoreRequest {
+ required Program value = 1;
+ optional string transactionId = 2;
+}
+
+message ProgramStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

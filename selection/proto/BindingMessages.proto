@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Список допустимых параметров для унифильтра  @author : vtrusov          Date: 19.04.12  @uiname Допустимые параметры унифильтра 
+message Binding {
+ optional int64 id = 1;
+ optional string tableName = 2;
+ optional string filter = 3;
+ repeated int64 relationsId = 4;
+}
+
+message BindingGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Binding criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message BindingGetResponse {
+ repeated Binding values = 8;
+ optional string errorMsg = 2;
+}
+
+message BindingRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message BindingRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message BindingStoreRequest {
+ required Binding value = 1;
+ optional string transactionId = 2;
+}
+
+message BindingStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

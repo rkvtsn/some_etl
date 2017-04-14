@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класс представляет собой управляющее подразделение.    @author astamir  @author sis    @uiname Управляющее подразделение   
+message ControlUnit {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование. 
+ optional string control = 3; // Управление 
+ optional string bnControl = 4; // БН управления 
+ optional string testCenter = 5; // Испытательный центр 
+ optional string bnTestCenter = 6; // БН испытательного центра 
+ optional string dislocation = 7; // Дислокация 
+}
+
+message ControlUnitGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlUnit criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlUnitGetResponse {
+ repeated ControlUnit values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlUnitRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlUnitRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlUnitStoreRequest {
+ required ControlUnit value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlUnitStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

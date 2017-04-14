@@ -1,0 +1,53 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой орбиту.    @author astamir  @author sis    @uiname Орбита   
+message Orbit {
+ optional int64 id = 1;
+ optional string orbitType = 2; // Тип орбиты 
+ optional string name = 3; // Условное наименование 
+ optional string period = 4; // Период обращения 
+ optional string apogee = 5; // Апогей 
+ optional string perigee = 6; // Перигей 
+ optional string inclination = 7; // Наклонение 
+ optional string standingPoint = 8; // Точка стояния 
+ optional string orbitalPlane = 9; // Плоскость орбиты 
+ optional string operatingPoint = 10; // Рабочая точка 
+}
+
+message OrbitGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Orbit criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OrbitGetResponse {
+ repeated Orbit values = 8;
+ optional string errorMsg = 2;
+}
+
+message OrbitRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OrbitRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OrbitStoreRequest {
+ required Orbit value = 1;
+ optional string transactionId = 2;
+}
+
+message OrbitStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

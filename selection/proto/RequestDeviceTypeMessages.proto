@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Определяет тип средства и список режимов.    @author Artyom    @uiname Тип средства для заявки 
+message RequestDeviceType {
+ optional int64 id = 1;
+ optional int64 deviceTypeId = 2; // Тип средства. 
+ repeated int64 modeRequestDeviceTypeId = 3; // Список режимов, в которых аппарат может работать с средством этого типа. 
+ optional int64 sessionRequestId = 4; // Идентификатор заявки 
+ optional int32 kitNumber = 5; // Номер комплекта. 
+}
+
+message RequestDeviceTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional RequestDeviceType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RequestDeviceTypeGetResponse {
+ repeated RequestDeviceType values = 8;
+ optional string errorMsg = 2;
+}
+
+message RequestDeviceTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RequestDeviceTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RequestDeviceTypeStoreRequest {
+ required RequestDeviceType value = 1;
+ optional string transactionId = 2;
+}
+
+message RequestDeviceTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

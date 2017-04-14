@@ -1,0 +1,56 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Время перехода с объекта на объект    @author astamir      @uiname Время перехода 
+message GeneralSwitchTime {
+ optional int64 id = 1;
+ optional int64 deviceTypeId = 2; // Тип средства 
+ optional int64 stationId = 3; // ПЭ 
+ optional int32 kitNumber = 4; // Номер комплекта 
+ optional int64 firstSpacecraftTypeId = 5; // Тип КА 1 
+ optional int32 firstUmn = 6; // УМН 1 
+ repeated int64 firstModesId = 7; // Режимы 1 
+ repeated int64 firstLinkedDeviceTypesId = 8; // Типы связанных средств 1 
+ optional int64 secondSpacecraftTypeId = 9; // Тип КА 2 
+ optional int32 secondUmn = 10; // УМН 2 
+ repeated int64 secondModesId = 11; // Режимы 2 
+ repeated int64 secondLinkedDeviceTypesId = 12; // Типы связанных средств 2 
+ optional uint64 switchTime = 13;
+}
+
+message GeneralSwitchTimeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional GeneralSwitchTime criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message GeneralSwitchTimeGetResponse {
+ repeated GeneralSwitchTime values = 8;
+ optional string errorMsg = 2;
+}
+
+message GeneralSwitchTimeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message GeneralSwitchTimeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message GeneralSwitchTimeStoreRequest {
+ required GeneralSwitchTime value = 1;
+ optional string transactionId = 2;
+}
+
+message GeneralSwitchTimeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

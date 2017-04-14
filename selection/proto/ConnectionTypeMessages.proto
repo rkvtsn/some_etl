@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 10.10.11  Time: 15:49   @uiname Вид связи 
+message ConnectionType {
+ optional int64 id = 1;
+ optional string connectionTypeName = 2;
+ optional string description = 3;
+}
+
+message ConnectionTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ConnectionType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ConnectionTypeGetResponse {
+ repeated ConnectionType values = 8;
+ optional string errorMsg = 2;
+}
+
+message ConnectionTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ConnectionTypeStoreRequest {
+ required ConnectionType value = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

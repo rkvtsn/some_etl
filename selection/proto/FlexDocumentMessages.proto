@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author aemaeth    @uiname Гибкий документ 
+message FlexDocument {
+ optional int64 id = 1;
+ optional int64 typeId = 2;
+ optional string serialized = 3;
+ optional string name = 4;
+}
+
+message FlexDocumentGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional FlexDocument criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message FlexDocumentGetResponse {
+ repeated FlexDocument values = 8;
+ optional string errorMsg = 2;
+}
+
+message FlexDocumentRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message FlexDocumentRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message FlexDocumentStoreRequest {
+ required FlexDocument value = 1;
+ optional string transactionId = 2;
+}
+
+message FlexDocumentStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

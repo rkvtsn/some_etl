@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov  Date: 16.01.13  SessionDevice для коррекций  @uiname Начальное состояние средств и режимов сессии 
+message CorrectedSessionDevice {
+ optional int64 id = 1;
+ optional int64 deviceId = 2;
+ repeated int64 correctedModeSessionDeviceId = 3;
+ optional int64 correctedSessionId = 4;
+}
+
+message CorrectedSessionDeviceGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional CorrectedSessionDevice criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message CorrectedSessionDeviceGetResponse {
+ repeated CorrectedSessionDevice values = 8;
+ optional string errorMsg = 2;
+}
+
+message CorrectedSessionDeviceRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectedSessionDeviceRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message CorrectedSessionDeviceStoreRequest {
+ required CorrectedSessionDevice value = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectedSessionDeviceStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

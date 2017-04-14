@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой тип этапа функционирования КА. Содержит в себе название типа  {@link #type}, а так же его описание {@link #description}. Каждый тип этапа жизненного цикла  содержит в себе ровно одно ТЦУ. Однозначно определяется идентификатором {@link #id}.    @author astamir  @author sis    @see ControlCycle    @uiname Тип этапа функционирования КА   
+message StageType {
+ optional int64 id = 1;
+ optional string type = 2; // Название типа этапа функционирования КА. 
+ optional string description = 3; // Описание типа этапа функционирования КА. 
+}
+
+message StageTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional StageType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message StageTypeGetResponse {
+ repeated StageType values = 8;
+ optional string errorMsg = 2;
+}
+
+message StageTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message StageTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message StageTypeStoreRequest {
+ required StageType value = 1;
+ optional string transactionId = 2;
+}
+
+message StageTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

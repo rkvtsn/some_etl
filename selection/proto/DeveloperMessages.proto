@@ -1,0 +1,57 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Разработчик.    @author artyom  @author aemaeth  @author sis    @uiname Разработчик   
+message Developer {
+ optional int64 id = 1;
+ optional string shortName = 2; // краткое наименование. 
+ optional string fullName = 3; // полное наименование. 
+ optional string index = 4; // индекс. 
+ optional string address = 5; // дата. 
+ optional bytes logo = 6; // логотип. 
+ optional string phone = 7; // номер телефона. 
+ optional string fax = 8; // факс. 
+ optional string email = 9; // адрес электронной почты. 
+ optional string website = 10; // веб сайт. 
+ optional string subscriber = 11; // контактное лицо 
+ optional string callsign = 12; // позывной. 
+ optional uint64 inputTime = 13; // время ввода. 
+ optional string position = 14; // должность. 
+}
+
+message DeveloperGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Developer criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DeveloperGetResponse {
+ repeated Developer values = 8;
+ optional string errorMsg = 2;
+}
+
+message DeveloperRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DeveloperRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DeveloperStoreRequest {
+ required Developer value = 1;
+ optional string transactionId = 2;
+}
+
+message DeveloperStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

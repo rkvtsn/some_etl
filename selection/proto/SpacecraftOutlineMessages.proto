@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Перечень работ по отдельному КА в рамках общего перечня работ   @author oxana    @uiname Перечень работ по отдельному КА  
+message SpacecraftOutline {
+ optional int64 id = 1;
+ optional int64 spacecraftId = 2; //КА, по которому задан перечень работ 
+ repeated int64 worksId = 3; //Список работ по дням 
+ optional int64 outlineId = 4;
+}
+
+message SpacecraftOutlineGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SpacecraftOutline criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SpacecraftOutlineGetResponse {
+ repeated SpacecraftOutline values = 8;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftOutlineRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftOutlineRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftOutlineStoreRequest {
+ required SpacecraftOutline value = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftOutlineStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

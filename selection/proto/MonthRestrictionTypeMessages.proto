@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author Alexey.Ivanov   @uiname Месячный тип мероприятия 
+message MonthRestrictionType {
+ optional int64 id = 1;
+ optional int64 restrictionTypeId = 2; // Тип ограничения 
+ optional int32 month = 3; // Месяц 
+ optional int64 maintenanceTypeId = 4; // Тип мероприятия 
+}
+
+message MonthRestrictionTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional MonthRestrictionType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message MonthRestrictionTypeGetResponse {
+ repeated MonthRestrictionType values = 8;
+ optional string errorMsg = 2;
+}
+
+message MonthRestrictionTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message MonthRestrictionTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message MonthRestrictionTypeStoreRequest {
+ required MonthRestrictionType value = 1;
+ optional string transactionId = 2;
+}
+
+message MonthRestrictionTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

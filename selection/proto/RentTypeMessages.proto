@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 10.10.11  Time: 15:54   @uiname Вид аренды 
+message RentType {
+ optional int64 id = 1;
+ optional string rentTypeName = 2;
+ optional string description = 3;
+}
+
+message RentTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional RentType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RentTypeGetResponse {
+ repeated RentType values = 8;
+ optional string errorMsg = 2;
+}
+
+message RentTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RentTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RentTypeStoreRequest {
+ required RentType value = 1;
+ optional string transactionId = 2;
+}
+
+message RentTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

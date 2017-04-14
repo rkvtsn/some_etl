@@ -1,0 +1,56 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author vpermyakov          Date: 17.04.12          Time: 14:57  @uiname Тип стредства в распоряжении 
+message DisposalSessionDeviceType {
+ optional int64 id = 1;
+ optional int64 disposalDeviceId = 2;
+ optional int32 typeNumber = 3; // Номер типа 
+ optional int64 deviceTypeId = 4; // Идентификатор из таблицы DeviceType (без констреинта) 
+ optional int64 disposalSessionId = 5; // Идентификатор , к которой относится данный набор режимов со средством. 
+ optional bool primaryDevice = 6; // Основной или вспомогательный. 
+ optional int64 linkedTo = 7; // идентификатор показывающий является ли средство вспомогательным и если является, то к  какому сессион девайс тайпу относиться (собственно его ид и хранится, без констреинта)  null - средство обвчное (не вспомогательное) 
+ optional int64 linkedFrom = 8; // идентификатор показывающий является ли средство вспомогательным и если является, то от  какого диспозал линкед девайса образовалось (собственно его ид и хранится, без констреинта)  null - средство обвчное (не вспомогательное) 
+ optional bool canceled = 9; // Статус отмененности 
+ optional int32 includedReadiness = 10; // битовый массив поддерживаемых готовностей  используются первые 6 бит числа  0 - готовность используется  1 - готовность исключается   0 - 5м  1 - 15м  2 - 30м  3 - 1ч  4 - 2ч  5 - 3ч 
+ repeated int64 disposalSessionDeviceModeId = 11; // Список режимов, которые используются в сеансе. 
+ repeated int64 disposalSessionDevicesId = 12; // Список подходящих комплектов, которые могут использоватся в сеансе. 
+ repeated int64 disposalSessionReportsId = 13;
+}
+
+message DisposalSessionDeviceTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalSessionDeviceType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalSessionDeviceTypeGetResponse {
+ repeated DisposalSessionDeviceType values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionDeviceTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionDeviceTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionDeviceTypeStoreRequest {
+ required DisposalSessionDeviceType value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionDeviceTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

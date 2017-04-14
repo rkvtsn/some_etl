@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Свойство. Обладает уникальным именем и значением.    @author george    @uiname Свойство   
+message Property {
+ optional int64 id = 1;
+ optional string name = 2; // Имя. 
+ optional string value = 3; // Значение. 
+}
+
+message PropertyGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Property criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message PropertyGetResponse {
+ repeated Property values = 8;
+ optional string errorMsg = 2;
+}
+
+message PropertyRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message PropertyRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message PropertyStoreRequest {
+ required Property value = 1;
+ optional string transactionId = 2;
+}
+
+message PropertyStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

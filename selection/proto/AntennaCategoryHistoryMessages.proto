@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // История категорий антенной системы.  @author alex   @uiname История категорий антенной системы 
+message AntennaCategoryHistory {
+ optional int64 id = 1;
+ optional uint64 startTime = 2; // Время начала категории 
+ optional int32 warrantyMonths = 3; // Гарантия в месяцах 
+ optional int32 warrantyHours = 4; // Гарантия в часах 
+ optional int32 warrantyKilometers = 5; // Гарантяи в километрах 
+ optional int64 documentId = 6; // Документ 
+ optional int64 categoryId = 7; // тип категории  
+ optional int64 antennaId = 8; // Антенна, к  которой относится история. 
+}
+
+message AntennaCategoryHistoryGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional AntennaCategoryHistory criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message AntennaCategoryHistoryGetResponse {
+ repeated AntennaCategoryHistory values = 8;
+ optional string errorMsg = 2;
+}
+
+message AntennaCategoryHistoryRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message AntennaCategoryHistoryRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message AntennaCategoryHistoryStoreRequest {
+ required AntennaCategoryHistory value = 1;
+ optional string transactionId = 2;
+}
+
+message AntennaCategoryHistoryStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет этап жизненного цикла космического аппарата. Этап жизненного цикла  имеет дату нача {@link #startDate} и дату конца {@link #endDate}, а так же некоторое описание  {@link #note}. Этап жизненного цикла определяется идентификатором {@link #id}.    @author Astamir  @author sis    @uiname Этап жизненного цикла КА 
+message Stage {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование 
+ optional int64 supportedStageTypeId = 3; // Тип этапа функционирования. 
+ optional uint64 startDate = 4; // Дата начала этапа 
+ optional string note = 5; // Примечание 
+ optional uint64 endDate = 6; // Дата конца этапа 
+ optional int64 spacecraftId = 7;
+}
+
+message StageGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Stage criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message StageGetResponse {
+ repeated Stage values = 8;
+ optional string errorMsg = 2;
+}
+
+message StageRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message StageRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message StageStoreRequest {
+ required Stage value = 1;
+ optional string transactionId = 2;
+}
+
+message StageStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

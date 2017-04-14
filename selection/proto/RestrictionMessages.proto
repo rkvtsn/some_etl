@@ -1,0 +1,63 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой ограничение. Для ограничения определён его тип  {@link #restrictionType}, время начала действия ограничения {@link #startTime} и время окончания  действия ограничения {@link #endTime}. Ограничение может распространяться на отдельный пункт  {@link #station}, средство {@link #restrictionDevices}, режим {@link #deviceMode} или аппарат  {@link #spacecraft}    @author Artyom    @uiname Ограничение 
+message Restriction {
+ optional int64 id = 1;
+ optional int64 restrictionTypeId = 2; // Тип ограничения. 
+ optional uint64 startTime = 3; // Время начала действия ограничения. 
+ optional uint64 endTime = 4; // Время окончания действия ограничения 
+ optional uint64 startDate = 5; // Дата начала действия ограничения. 
+ optional uint64 endDate = 6; // Дата окончания действия ограничения 
+ optional int64 spacecraftTypeId = 7; // Тип КА, на который распространяется ограничение. 
+ repeated int64 restrictionSpacecraftsId = 8; // КА'ты, на которые распространяется ограничение. 
+ repeated int64 restrictionStationsId = 9; // Пункты, на который распространяется ограничение. 
+ repeated int64 restrictionDeviceTypesId = 10; // Типы средств, на которые распространяется ограничение. 
+ repeated int64 restrictionDevicesId = 11; // Средства, на которые распространяется ограничение. 
+ repeated int64 restrictionDeviceModesId = 12; // Режимы, на которые распространяется ограничение. 
+ repeated int64 restrictionFrequenciesId = 13; // Частоты, на которые распространяется ограничение. 
+ optional int64 permissiveModeId = 14; // Разрешающий режим. 
+ optional bool continuity = 15; // Непрерывность.  <p>    Следующим образом влияет на интерпретацию ограничения:    <ul>  <li> <code>true</code> означает, что ограничение действует с даты <tt>startDate</tt> по дату  <tt>endDate</tt> в случае если:  <ul>  <li>в поле dayOfWeek значение 0, то каждый день с времени <tt>startTime</tt> по время  <tt>endTime</tt></li>  <li>в поле dayOfWeek значение не 0, то в день недели с соответствующим номером с времени  <tt>startTime</tt> по время <tt>endTime</tt></li>  </ul>  </li>  <li> <code>false</code> означает, что ограничение действует весь интервал времени с времени  <tt>startTime</tt> в день <tt>startDate</tt> по время <tt>endTime</tt> в день  <tt>endDate</tt></li>  </ul>    @see #dayOfWeek 
+ optional int32 dayOfWeek = 16; // Номер дня недели в соотвествии со следующей номерацией:  <ul>  <li>0 - ежедневно;</li>  <li>1 - понедельник;</li>  <li>2 - вторник;</li>  <li>3 - среда;</li>  <li>4 - четверг;</li>  <li>5 - пятница;</li>  <li>6 - суббота;</li>  <li>7 - воскресенье.</li>  </ul>    @see #continuity 
+ optional string note = 17; // Примечание. 
+ optional int64 maintenanceId = 18; // Мероприятие 
+ optional string document = 19; // Документ 
+ optional string issuedBy = 20; // Кем выдано 
+}
+
+message RestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Restriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RestrictionGetResponse {
+ repeated Restriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message RestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RestrictionStoreRequest {
+ required Restriction value = 1;
+ optional string transactionId = 2;
+}
+
+message RestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

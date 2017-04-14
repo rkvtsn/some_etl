@@ -1,0 +1,56 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 18.04.12  @uiname Освещённость 
+message OrionOsvView {
+ optional int64 id = 1;
+ optional double fal = 2;
+ optional double fas = 3;
+ optional uint64 time = 4;
+ optional double h = 5;
+ optional double umOsv = 6;
+ optional double umSosv = 7;
+ optional double faza = 8;
+ optional int32 prOsv = 9;
+ optional int32 vit = 10;
+ optional int32 sr = 11;
+ optional int64 spacecraftId = 12;
+ optional int64 stationId = 13;
+}
+
+message OrionOsvViewGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional OrionOsvView criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OrionOsvViewGetResponse {
+ repeated OrionOsvView values = 8;
+ optional string errorMsg = 2;
+}
+
+message OrionOsvViewRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OrionOsvViewRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OrionOsvViewStoreRequest {
+ required OrionOsvView value = 1;
+ optional string transactionId = 2;
+}
+
+message OrionOsvViewStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

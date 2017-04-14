@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // История состояний бортовой аппаратуры.   @author astamir   @uiname История состояний БА. 
+message EquipmentStateHistory {
+ optional int64 id = 1;
+ optional string code = 2; // Код 
+ optional int64 equipmentStateId = 3; // Состояние БА. 
+ optional uint64 startTime = 4; // Начало. 
+ optional uint64 endTime = 5; // Окончание. 
+ optional string note = 6; // Примечание. 
+ optional int64 spacecraftId = 7; // Идентификатор КА 
+}
+
+message EquipmentStateHistoryGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional EquipmentStateHistory criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message EquipmentStateHistoryGetResponse {
+ repeated EquipmentStateHistory values = 8;
+ optional string errorMsg = 2;
+}
+
+message EquipmentStateHistoryRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message EquipmentStateHistoryRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message EquipmentStateHistoryStoreRequest {
+ required EquipmentStateHistory value = 1;
+ optional string transactionId = 2;
+}
+
+message EquipmentStateHistoryStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Created by IntelliJ IDEA.  User: vpermyakov  Date: 01.11.11  Time: 13:01  To change this template use File | Settings | File Templates. 
+message Geo {
+ optional int64 id = 1;
+ optional int32 number = 2; // Номер 
+ optional int32 timeZone = 3; // Часовое смещение 
+ optional string name = 4; // Позывной 
+ optional double latitude = 5; // Широта 
+ optional double longitude = 6; // Долгота 
+ optional double altitude = 7; // Высота 
+}
+
+message GeoGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Geo criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message GeoGetResponse {
+ repeated Geo values = 8;
+ optional string errorMsg = 2;
+}
+
+message GeoRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message GeoRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message GeoStoreRequest {
+ required Geo value = 1;
+ optional string transactionId = 2;
+}
+
+message GeoStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

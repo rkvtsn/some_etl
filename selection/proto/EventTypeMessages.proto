@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой тип ограничения по событию.   @author astamir    @uiname Тип ограничения по событию 
+message EventType {
+ optional int64 id = 1;
+ optional string name = 2;
+ optional string description = 3;
+}
+
+message EventTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional EventType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message EventTypeGetResponse {
+ repeated EventType values = 8;
+ optional string errorMsg = 2;
+}
+
+message EventTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message EventTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message EventTypeStoreRequest {
+ required EventType value = 1;
+ optional string transactionId = 2;
+}
+
+message EventTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

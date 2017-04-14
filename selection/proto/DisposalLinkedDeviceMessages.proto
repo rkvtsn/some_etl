@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author vpermyakov          Date: 17.04.12          Time: 15:00  @uiname Связанное средство для распоряжения 
+message DisposalLinkedDevice {
+ optional int64 id = 1;
+ optional int64 disposalSessionDeviceId = 2;
+ optional string deviceSerialNumber = 3; // Номер конкретного средства 
+ optional string shortName = 4;
+ optional int64 deviceId = 5;
+ optional int64 parentDeviceId = 6; // другой linkedDevice который является родительским для данного, для того, что бы можно было  организовать вложенность связных средств друг в друга 
+ optional int32 deviceTypeNumber = 7; // Номер типа стредства 
+ optional int32 kitNumber = 8; // Номер комплекта 
+}
+
+message DisposalLinkedDeviceGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalLinkedDevice criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalLinkedDeviceGetResponse {
+ repeated DisposalLinkedDevice values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalLinkedDeviceRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalLinkedDeviceRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalLinkedDeviceStoreRequest {
+ required DisposalLinkedDevice value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalLinkedDeviceStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

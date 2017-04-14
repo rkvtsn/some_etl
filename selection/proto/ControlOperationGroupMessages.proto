@@ -1,0 +1,54 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой группу операций управления(ГОУ). Группа имеет набор схем ее  реализации {@link #schemes}, а так же частота ее выполнения {@link #frequency} и возможно время  выполнения данной группы {@link }.    @see ControlScheme    @author astamir    @uiname ГОУ   
+message ControlOperationGroup {
+ optional int64 id = 1;
+ repeated int64 schemesId = 2; // Список схем выполнения группы операций управления 
+ optional int32 duration = 3; // Время выполнения ГОУ. (минуты) 
+ optional string durationTypeString = 4;
+ optional string freqString = 5;
+ optional string name = 6; // Полное название 
+ optional string shortName = 7; // Сокращенное название 
+ optional string description = 8; // Описание группы операций управления 
+ optional int32 index = 9;
+ optional int32 subGroup = 10; // Если 0 то группа не включена в подгруппы. 
+ optional int64 controlCycleId = 11;
+}
+
+message ControlOperationGroupGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlOperationGroup criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlOperationGroupGetResponse {
+ repeated ControlOperationGroup values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationGroupRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationGroupRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationGroupStoreRequest {
+ required ControlOperationGroup value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationGroupStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,54 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author vpermyakov          Date: 21.05.12          Time: 15:53  @uiname Данные о доведении из "Ориона" 
+message Dkrop {
+ optional int64 id = 1;
+ optional uint64 dop = 2;
+ optional int64 ka = 3;
+ optional int32 v = 4;
+ optional int32 ip = 5;
+ optional uint64 dtn = 6;
+ optional uint64 dtk = 7;
+ optional int32 ts = 8;
+ optional int32 dg = 9;
+ optional int32 dv = 10;
+ repeated int64 dkrropListId = 11;
+}
+
+message DkropGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Dkrop criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DkropGetResponse {
+ repeated Dkrop values = 8;
+ optional string errorMsg = 2;
+}
+
+message DkropRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DkropRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DkropStoreRequest {
+ required Dkrop value = 1;
+ optional string transactionId = 2;
+}
+
+message DkropStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой режимы работы средства, входящего в сеанс.  @uiname Режим средства в распоряжении 
+message DisposalSessionDeviceMode {
+ optional int64 id = 1;
+ optional int64 disposalSessionDeviceTypeId = 2;
+ optional int32 deviceModeNumber = 3; // Номер конкретного режима, используемого в сеансе. 
+}
+
+message DisposalSessionDeviceModeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalSessionDeviceMode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalSessionDeviceModeGetResponse {
+ repeated DisposalSessionDeviceMode values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionDeviceModeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionDeviceModeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionDeviceModeStoreRequest {
+ required DisposalSessionDeviceMode value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionDeviceModeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

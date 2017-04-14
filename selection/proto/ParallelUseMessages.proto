@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //Объект класса показывает возможность одновременного использования   средств и режимов на конкретном типе КА.    @author astamir  @author sis    @uiname Одновременное использование  
+message ParallelUse {
+ optional int64 id = 1;
+ optional int64 deviceTypeId = 2; // Тип устройства, к которому относится данный объект 
+ optional int32 spacecraftAmount = 3; // Количество КА, которые одновременно могут использовать средство. 
+ repeated int64 parallelSpacecraftTypesId = 4; // Типы КА. 
+ optional int64 modeId = 5; // Режим. 
+}
+
+message ParallelUseGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ParallelUse criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ParallelUseGetResponse {
+ repeated ParallelUse values = 8;
+ optional string errorMsg = 2;
+}
+
+message ParallelUseRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ParallelUseRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ParallelUseStoreRequest {
+ required ParallelUse value = 1;
+ optional string transactionId = 2;
+}
+
+message ParallelUseStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,8 @@
+<request operation="list" object="radient">
+    <item name="spacecraft">
+    	<property name="spacecraftid" />
+        <property name="spacecraftname" order="-1" />
+        <property name="spacecraftnumber" />
+        <property name="spacecraftindex" />
+    </item>
+</request>

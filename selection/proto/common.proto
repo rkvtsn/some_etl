@@ -1,0 +1,270 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "CommonProtos";
+
+
+// Общие сообщения
+// отправка реквизитов доступа с любого ПК
+message LoginRequest {
+    required string username = 1;
+    required string password = 2;
+    optional string clientVersion = 3; // версия в формате "[0-9].[0-9].[0-9]"
+    optional string subscriber = 4; // shortname абонента
+    required int64 clientTime = 5; //время на клиенте (кол-во миллисекунд от эпохи), используется для генерации sessionId на сервере
+    repeated string ip = 6; // ip адрес клиента для идентификации
+    optional string pkName = 7; //нужно если логин идет первый раз(пустая таблица Workstation) от ПК Админ, пропускать без проверки по IP
+    required string hostName = 8;
+}
+
+//полученеие ID сессии в ответ на отправку реквизитов доступа
+message LoginResponse {
+    required string sessionId = 1; // если 0, то смотрим на ошибку
+    optional string workstationName = 4;
+    //при отсутствии в БД отправленных реквизитов доступов ПК-отправителю отвечаем, что залогиниться не удалось
+    optional int32 errorCode = 2;
+    optional string errorMessage = 3;
+    optional string fio = 5;
+    optional bool readOnly = 6;
+}
+
+//запрос на копирование плана по ID
+message CloneScheduleRequest {
+    required int64 scheduleId = 1;
+}
+
+//ответ с ID нового плана
+message CloneScheduleResponse {
+    required int64 scheduleId = 1;
+}
+
+//создание выписки по выбранному плану
+message MakeExtractionRequest {
+    required int64 scheduleId = 1;
+    repeated string subscriber = 2;
+}
+
+//ответ с ID выписки
+message MakeExtractionResponse {
+    repeated int64 extractionId = 1;
+}
+
+//завершение работы
+message LogoutRequest {
+    required string sessionId = 1;
+}
+
+message ServerVersionRequest {
+
+}
+
+message ServerVersionResponse {
+    required string version = 1;
+    required string javaVersion = 2;
+
+}
+
+enum EntityUpdateAction {
+    CREATE = 1;
+    UPDATE = 2;
+    DELETE = 3;
+    DROP_SCHEDULE = 4;
+}
+
+message EntityUpdateNotifier {
+    required int64 index = 1;
+    required EntityUpdateAction action = 2;
+    required string modelClassRef = 3;
+    required string sessionId = 4;
+}
+
+message BatchUpdateNotifier {
+    repeated EntityUpdateNotifier notifiers = 1;
+}
+
+// действия с транзакциями
+enum TransactionAction {
+    START = 1;
+    COMMIT = 2;
+    ROLLBACK = 3;
+}
+
+//todo remove
+// класс всевозможных запросов связанных с транзакциями
+message TransactionRequest {
+    required TransactionAction action = 1;
+    optional string transactionId = 2;
+}
+
+//todo remove
+// класс ответов на запросы транзакций
+message TransactionResponse {
+    required string errorMsg = 1;
+    optional string transactionId = 2;
+}
+
+message ErrorResponse {
+    optional string errorMsg = 1;
+    optional string stackTrace = 2;
+}
+
+message InsertDisposalRequest {
+    required bytes disposal = 1;
+}
+
+message InsertDisposalResponse {
+    required bool successfull = 1;
+    optional string errorMsg = 2;
+}
+
+message OkikNumberRequest {
+
+}
+
+message OkikNumberResponse {
+    required bool success = 1;
+    optional int32 okikNumber = 2;
+}
+
+message BatchGetRequest {
+	required string classSimpleName = 1;
+	optional int64 id = 2;
+	
+	optional uint64 startTime = 3;
+ 	optional uint64 endTime = 4;
+ 	optional uint64 startDate = 5;
+ 	optional uint64 endDate = 6;
+ 	
+ 	optional bytes criteria = 7;
+}
+
+message BatchGetResponse {
+	repeated string classNames = 1;
+	repeated bytes messages = 2;
+}
+
+// Ответы на кастомные sql-запросы
+enum ResultSetDataType {
+    STRING = 1;
+    INTEGER = 2;
+    LONG = 3;
+    DOUBLE = 4;
+    TIME = 5;
+    DATE = 6;
+}
+
+message ColumnDescription {
+    required string title = 1;
+    required ResultSetDataType data_type = 2;
+}
+
+message ResultSetRow {
+    repeated bytes data = 1;
+}
+
+message ResultSet {
+    repeated ColumnDescription columns = 1;
+    repeated ResultSetRow rows = 2;
+}
+
+message ConfirmRestrictionRequest {
+    required int64 restrictionConfirmId = 1;
+}
+
+message ConfirmRestrictionResponse {
+    required int64 restrictionId = 1;
+}
+
+message GetLaunchHistoryElementBySpacecraftIdRequest {
+    required int64 spacecraftId = 1;
+}
+
+message GetLaunchHistoryElementBySpacecraftIdResponse {
+    optional int64 launchHistoryElementId = 1;
+}
+
+//запрос на утверждение плана
+message ApproveScheduleRequest {
+    required int64 scheduleId = 1;
+    required int64 approvalDate = 2;
+}
+
+message ApproveScheduleResponse {
+    required int64 scheduleId = 1;
+    required int32 revision = 2;
+}
+
+message LaunchHistoryContentQuater {
+    optional int64 launchContentId = 1;
+	optional int64 launchHistoryElementId = 2;
+	optional string spacecraftName = 3;
+	optional int64 expectedLaunchDate = 4;
+}
+
+message LaunchHistoryContentQuaterRequest {
+    required int64 expectedLaunchDateBegin = 1;
+    required int64 expectedLaunchDateEnd = 2;
+}
+
+message LaunchHistoryContentQuaterResponse {
+    repeated LaunchHistoryContentQuater launchHistoryContentQuater = 1;
+}
+
+message ServerActivity {
+    required string notify = 1;
+}
+
+message EnableBatchSelectRequest {
+
+}
+
+message EnableBatchSelectResponse {
+    required bool enabled = 1;
+}
+
+
+message AvailableUmnRange {
+    required int64 id = 1;
+    required int32 startUmn = 2;
+    required int32 endUmn = 3;
+}
+
+message AvailableUmnRangeRequest {
+    required int64 spacecraftTypeId = 1;
+}
+
+message AvailableUmnRangeResponse {
+    repeated AvailableUmnRange availableUmnRange = 1;
+}
+
+message DropScheduleRequest {
+    required int64 scheduleId = 1;
+}
+
+message DropScheduleResponse {
+
+}
+
+message FastScheduleSelectRequest {
+	repeated uint64 date = 1;
+	optional bool sidk = 2;
+}
+
+message FastRequestSelectRequest {
+    repeated uint64 date = 1;
+}
+
+message AvailableUmnRangeListRequest {
+    required int64 spacecraftTypeId = 1;
+}
+
+message AvailableUmnRangeListResponse {
+    repeated int32 umn = 1;
+}
+
+message FastExtractionSelectRequest {
+	optional uint64 date = 1;
+	optional int64 subscriberId = 2;
+	optional int64 extractionId = 3;
+}

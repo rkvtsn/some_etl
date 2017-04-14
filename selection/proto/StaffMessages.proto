@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Состав ДС.   @author astamir  @uiname Состав ДС 
+message Staff {
+ optional int64 id = 1;
+ optional string fio = 2;
+ optional int64 controlCenterId = 3;
+}
+
+message StaffGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Staff criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message StaffGetResponse {
+ repeated Staff values = 8;
+ optional string errorMsg = 2;
+}
+
+message StaffRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message StaffRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message StaffStoreRequest {
+ required Staff value = 1;
+ optional string transactionId = 2;
+}
+
+message StaffStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

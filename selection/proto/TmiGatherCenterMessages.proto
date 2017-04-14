@@ -1,0 +1,60 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Центр сбора ТМИ.    @author alex    @uiname Центр сбора ТМИ 
+message TmiGatherCenter {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование 
+ optional string shortName = 3; // Краткое наименование 
+ optional string fullName = 4; // Полное наименование 
+ optional string index = 5; // Индекс 
+ optional string building = 6; // Здание, в котором расположен пункт управления 
+ optional string room = 7; // Комната, в которой расположен пункт управления 
+ optional string place = 8; // Наименование организации, которой принадлежит пункт управления 
+ optional string chiefPhone = 9; // Номер телефона начальника (НДР) 
+ optional string conPhone = 10; // Номер телефона ЦОН 
+ optional bool hasURM = 11; // Наличие удалённого рабочего места 
+ optional string os = 12; // Операционная система 
+ optional string networkName = 13; // Сетевое имя 
+ optional string ip = 14; // IP адрес 
+ optional int64 controlUnitId = 15; // управляющее подразделение 
+ optional int64 developerId = 16; // Разработчик 
+ optional int64 documentId = 17; // Документ 
+}
+
+message TmiGatherCenterGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional TmiGatherCenter criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message TmiGatherCenterGetResponse {
+ repeated TmiGatherCenter values = 8;
+ optional string errorMsg = 2;
+}
+
+message TmiGatherCenterRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message TmiGatherCenterRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message TmiGatherCenterStoreRequest {
+ required TmiGatherCenter value = 1;
+ optional string transactionId = 2;
+}
+
+message TmiGatherCenterStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

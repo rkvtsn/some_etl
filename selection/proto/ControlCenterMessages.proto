@@ -1,0 +1,65 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой пункт управления (ПУ). Каждый ПУ закреплен за одним ЦИПом. За ПУ  закрепляется поддержание работоспособности одного (или нескольких) типов ЛА. Физически он  располагается в здании, определен штат, телефоны связи и прочее. Может быть установлено удаленное  рабочее место (УРМ). Если рабоче место установлено, то для него определены ОС, сетевое имя, IP  адрес.      @author astamir  @author sis    @uiname ПУ 
+message ControlCenter {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование 
+ optional string shortName = 3; // Краткое наименование 
+ optional string fullName = 4; // Полное наименование 
+ optional string index = 5; // Индекс 
+ optional string building = 6; // Здание, в котором расположен пункт управления 
+ optional string room = 7; // Комната, в которой расположен пункт управления 
+ optional string place = 8; // Наименование организации, которой принадлежит пункт управления 
+ optional string schedulerPhone = 9; // Номер телефона планировщика. При сборе заявок необходимо учитывать этот номер, как номер для  связи. 
+ optional string chiefPhone = 10; // Номер телефона начальника 
+ optional string ballisticPhone = 11; // Номер телефона баллистика 
+ optional string analystPhone = 12; // Номер телефона аналитика 
+ optional string noPhone = 13; // Номер телефона НО 
+ repeated int64 staffId = 14; // Состав ДС 
+ optional bool hasURM = 15; // Наличие удалённого рабочего места 
+ optional string os = 16; // Операционная система 
+ optional string networkName = 17; // Сетевое имя 
+ optional string ip = 18; // IP адрес 
+ optional int64 controlUnitId = 19; // управляющее подразделение 
+ optional int64 generalControlCenterId = 20; // ЦУПа 
+ optional int64 developerId = 21; // Разработчик 
+ optional int64 documentId = 22; // Документ 
+}
+
+message ControlCenterGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlCenter criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlCenterGetResponse {
+ repeated ControlCenter values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlCenterRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlCenterRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlCenterStoreRequest {
+ required ControlCenter value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlCenterStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

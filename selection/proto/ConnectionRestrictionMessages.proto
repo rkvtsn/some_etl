@@ -1,0 +1,57 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 11.10.11  Time: 18:00   @uiname Ограничение на канал связи 
+message ConnectionRestriction {
+ optional int64 id = 1;
+ optional int64 channelId = 2;
+ optional uint64 startTime = 3;
+ optional uint64 endTime = 4;
+ optional string note = 5;
+ optional int64 stationId = 6;
+ optional int64 documentId = 7;
+ optional int64 columnNumber = 8;
+ optional int64 frequencyId = 9;
+ optional int64 conFunDevTypeDevModeId = 10;
+ optional int64 spacecraftId = 11;
+ optional int64 directionFromId = 12;
+ optional int64 directionToId = 13;
+ optional int64 replacementChannelId = 14;
+}
+
+message ConnectionRestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ConnectionRestriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ConnectionRestrictionGetResponse {
+ repeated ConnectionRestriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message ConnectionRestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionRestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ConnectionRestrictionStoreRequest {
+ required ConnectionRestriction value = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionRestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

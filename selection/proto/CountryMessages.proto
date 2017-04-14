@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author savva   @uiname Страна 
+message Country {
+ optional int64 id = 1;
+ optional string shortName = 2; // Короткое название 
+ optional string longName = 3; // Расшифровка 
+}
+
+message CountryGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Country criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message CountryGetResponse {
+ repeated Country values = 8;
+ optional string errorMsg = 2;
+}
+
+message CountryRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message CountryRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message CountryStoreRequest {
+ required Country value = 1;
+ optional string transactionId = 2;
+}
+
+message CountryStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

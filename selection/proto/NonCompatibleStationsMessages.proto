@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой несочетаемые ПЭ.    @author astamir  @author sis    @uiname Несочетаемые ПЭ   
+message NonCompatibleStations {
+ optional int64 id = 1;
+ optional string note = 2; // Примечание 
+ optional int64 documentId = 3; // Документ 
+ optional int64 nonCompatibleStationId = 4; // Не совместимый ПЭ 
+ optional int64 stationId = 5; // Идентификатор ПЭ 
+}
+
+message NonCompatibleStationsGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional NonCompatibleStations criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message NonCompatibleStationsGetResponse {
+ repeated NonCompatibleStations values = 8;
+ optional string errorMsg = 2;
+}
+
+message NonCompatibleStationsRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message NonCompatibleStationsRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message NonCompatibleStationsStoreRequest {
+ required NonCompatibleStations value = 1;
+ optional string transactionId = 2;
+}
+
+message NonCompatibleStationsStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

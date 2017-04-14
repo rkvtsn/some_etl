@@ -1,0 +1,57 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой сеанс управления. Под сеансом управления понимается набор  операций управления {@link #items}, а так же набор различных ограничений на сеанс. Так же в  сеансе управления указывается длительность {@link #duration} в секундах.    @see ControlSessionItem  @see TimeRestriction  @see DailyRestriction  @author Astamir    @uiname Сеанс управления 
+message ControlSession {
+ optional int64 id = 1;
+ optional uint64 duration = 2; // Длительность сеанса управления. 
+ repeated int64 itemsId = 3; // Список наборов операций управления. 
+ repeated int64 dailyRestrictionsId = 4;
+ repeated int64 eventRestrictionsId = 5;
+ repeated int64 timeRestrictionsId = 6;
+ repeated int64 zoneRestrictionsId = 7;
+ optional int32 loop = 8; // Виток (значение 0 - виток не учитываем) 
+ optional int32 day = 9; // Сутки (значение 0 - сутки не учитываем) 
+ optional int32 dayLoop = 10; // Суточные витки (значение 0 - не учитываем суточные витки) 
+ optional string freqString = 11;
+ optional string frequencyTypeString = 12;
+ optional int32 index = 13;
+ optional int64 controlSchemeId = 14;
+}
+
+message ControlSessionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlSession criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlSessionGetResponse {
+ repeated ControlSession values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlSessionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlSessionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlSessionStoreRequest {
+ required ControlSession value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlSessionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

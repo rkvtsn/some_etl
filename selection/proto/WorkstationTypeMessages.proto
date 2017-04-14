@@ -1,0 +1,45 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Тип АРМ НИП, НСИ, УРМП, ДПиС...    @uiname Тип АРМ 
+message WorkstationType {
+ optional int64 id = 1;
+ optional string name = 2;
+}
+
+message WorkstationTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional WorkstationType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message WorkstationTypeGetResponse {
+ repeated WorkstationType values = 8;
+ optional string errorMsg = 2;
+}
+
+message WorkstationTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message WorkstationTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message WorkstationTypeStoreRequest {
+ required WorkstationType value = 1;
+ optional string transactionId = 2;
+}
+
+message WorkstationTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

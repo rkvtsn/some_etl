@@ -1,0 +1,90 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Тип космического аппарата   @author alex  @author sis    @uiname Тип КА 
+message SpacecraftType {
+ optional int64 id = 1;
+ optional int32 number = 2; // Номер типа 
+ optional string view = 3; // Вид 
+ optional uint64 startTime = 4; // Время начала 
+ optional uint64 endTime = 5; // Время окончания 
+ optional string fullName = 6; // Полное наименование 
+ optional string workingName = 7; // Рабочее наименование  
+ optional string shortName = 8; // Краткое наименование 
+ optional string amountInWartime = 9; // Количество в военное время 
+ optional string amountInPeacetime = 10; // Количество в мирное время 
+ optional string index = 11; // Индекс 
+ optional bytes image = 12; // Внешний вид 
+ optional string equipment = 13; // Состав бортовой аппаратуры 
+ optional bytes equipmentPicture = 14; // Изображение состава бортовой аппаратуры 
+ optional int64 countryId = 15; // Государство 
+ optional int64 developerId = 16; // Идентификатор разработчика 
+ optional string customer = 17; // Заказчик 
+ optional double gsas = 18; // ГСАС 
+ optional int64 documentId = 19; // Документ 
+ optional int64 mainTMIProcessingCenterId = 20; // Главный (основной) центр обработки ТМИ 
+ optional int64 reserveTMIProcessingCenterId = 21; // Резервный центр обработки ТМИ 
+ optional int64 mainTMIGatherCenterId = 22; // Главный (основной) центр сбора ТМИ 
+ optional int64 reserveTMIGatherCenterId = 23; // Резервный центр сбора ТМИ 
+ optional int64 mainBallisticCenterId = 24; // Главный (основной) баллистический центр (БЦ) 
+ optional int64 reserveBallisticCenterId = 25; // Резервный баллистический центр (БЦ) 
+ repeated int64 straightFrequenciesId = 26;
+ repeated int64 reverseFrequenciesId = 27;
+ repeated int64 tmiFrequenciesId = 28;
+ optional bool hasVA = 29; // Наличие возвращаемого аппарата (ВА) 
+ optional int32 skCount = 30; // Количество спускаемых капсул 
+ optional bool hasBI = 31; // Наличие БИ 
+ optional bool hasP = 32; // Наличие пилота (пилотируемость) 
+ optional bool hasSKK = 33; // Наличие СКК 
+ optional bool hasASN = 34; // Наличие АСН 
+ optional bool hasGIC = 35; // Признак управления ГИЦ 
+ optional bool hasER = 36; // Признак ежесуточной работы 
+ optional int64 controlCenterId = 37; // Идентификатор ПУ 
+ optional uint64 zrvLimit = 38; // Допуск по ЗРВ 
+ optional int64 orbitTypeId = 39; // Идентификатор типа орбиты 
+ optional string platform = 40; // Платформа 
+ optional int64 spaceSystemId = 41; // Идентифкатор космической системы 
+ repeated int64 supportedStageTypesId = 42; // Поддерживаемые типы этапов функционирования КА 
+ repeated int64 groundControlComplexesId = 43; // Наземномные комплексы управления (НКУ) 
+ repeated int64 spacecraftTypeModesId = 44; // Типы режимов КА 
+ optional int64 generalSpacecraftTypeId = 45; // Сущность на которую ссылаются 
+ optional int64 generalLATypeId = 46; // Владеемая сущность 
+ optional string note = 47; // Примечание 
+}
+
+message SpacecraftTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SpacecraftType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SpacecraftTypeGetResponse {
+ repeated SpacecraftType values = 8;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SpacecraftTypeStoreRequest {
+ required SpacecraftType value = 1;
+ optional string transactionId = 2;
+}
+
+message SpacecraftTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,135 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "URMPProtos";
+
+// сообщение подтверждающее текуший план
+message ApproveSchedule {
+        required int64 scheduleDate = 1;
+}
+
+enum ReportSource {
+    URMP = 1;      // если источник сообщения - сервер УРМ-П
+    PRIMARY = 2;   // если источник - осовной сервер
+}
+
+// сообщение - отчет "с" или "на" сервер УРМ-П
+message URMPReport {
+        required string reportType = 1; // тип отчета
+        optional string comment = 2;    // не обязательный комментарий
+        required string reportString = 3;  // строка с информацией отчета
+        required int64 sendDate = 4;        // дата отчета (по сути дата отправки)
+        required int64 disposalSessionDeviceTypeId = 5; // идентификатор типа средства к которму относится отчет
+        optional ReportSource source = 6;    // откуда отчет с главного сервера или с УРМ-П
+        required bool ersatz = 7; // признак сурогатности
+}
+
+message URMPReportRes {
+        required int64 id = 1; // идентификатор отчета
+        required int64 receiveDate = 2;  // дата получения
+        optional int64 receiptDate = 3;  // дата квитирования (заполняется только сервером УРМ-П)
+}
+
+message DisposalBatchRequest {
+        required int32 stationNumber = 1;
+        required bool force = 2; // апдейт без учета признаков доставленности, то есть полный
+}
+
+message DisposalBatchResponse {
+        required int64 updateTime = 1;
+        required bytes batch = 2;
+}
+
+// ---------------------------- отчеты ---------------------------------------
+
+message LinkedDisposal{
+    required int64 deviceId = 1;  // идентификатор Device (не DisposalSesionDevice)
+    required bool forDelete = 2;
+}
+
+// сообщение для передачи выбранных средств, расширяет структурный класс типов, что бы добавить туда идентификатор выбранного комплекта
+message DeviceTypeKitReport {
+        required int64 disposalTypeId = 1;
+        optional int64 disposalDeviceId = 2;
+        repeated LinkedDisposal linkedDevices = 3;
+}
+
+message SelectKitRequest {
+    repeated DeviceTypeKitReport reports = 1; // список кит репортов
+}
+
+// ответ на запрос сохранения комплектов
+message SelectKitResponse {
+    repeated int64 createdDisposalTypeIds = 1;  // созданные вспомогательные средства
+    repeated int64 removedDisposalTypeIds = 2;  // удаленные вспомогательные средства
+    repeated int64 affectedDisposalTypeIds = 3; // средства у которых были изменены комплекты
+}
+
+// ---------------------------- нотифаеры -----------------------------------------
+
+enum DisposalAction {
+        D_CREATE = 1;
+        D_UPDATE = 2;
+        D_DELETE = 3;
+}
+
+message DisposalAndAction {
+        required int64 disposalId = 1;
+        required DisposalAction action = 2;
+}
+
+// нотифаер для отдельной станции, содержит список идов диспозалов измененных для указанного окика
+message NotifierForStation {
+        required int32 stationNumber = 1;
+        repeated DisposalAndAction disposalAndActions = 2;
+}
+
+// сообщение на УРМП говорящее о том, что пришло новое распоряжение
+// состоит из нотифаеров для отдельно взятой станции
+message ApprovedScheduleNotifier {
+        repeated NotifierForStation stationNotifiers = 1;
+}
+
+// сообщение отчет о доставке диспозала, отсылается с УРМ-П на главный сервер
+message DisposalDeliverReceipt {
+        repeated int64 disposalIds = 1;
+}
+
+// ---------------------------- служебные сообщения ------------------------------------
+
+// сообщение подтверждающее выполнение сеанса
+message ApproveExecutionCommand {
+        required int64 sessionTypeId = 1;
+        required string approvement = 2;
+        optional string comment = 3;
+}
+
+// класс отчета о получении (используется совместно с отсылками докладов для установки даты квитирования на основном сервере)
+message ReceiptReport {
+        required int64 reportId = 1;
+        required int64 receptDate = 2;
+}
+
+// класс ответного сообщения содержащего в себе даты отправки, получения и квитирования
+message DateBillResponse {
+        required int64 reportId = 1;
+        required int64 sendDate = 2;
+        optional int64 receiveDate = 3;
+        optional int64 receiptDate = 4;
+}
+
+// класс сообщения запрашивающий дату подтвердения плана по дате плана
+message ScheduleApproveDateRequest {
+        required int64 scheduleDate = 1;
+}
+
+message ScheduleApproveDateResponse {
+        optional int64 approveDate = 1;
+}
+
+// класс пустого ответного сообщения на репорт (используется в случае когда
+// нужно просто подтверждение того что сообщение вообще дошло до сервера)
+message BlankResponse {
+
+}

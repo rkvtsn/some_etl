@@ -1,0 +1,59 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //   @author aemaeth  @uiname Запись истории запуска 
+message LaunchHistoryElement {
+ optional int64 id = 1;
+ optional uint64 primaryLaunchDate = 2; // Основная дата пуска 
+ optional uint64 reserveLaunchDate = 3; // Резервная дата пуска 
+ optional uint64 expectedLaunchDate = 4; // Ожидаемое время запуска 
+ optional int32 quarter = 5; // Квартал запуска 
+ optional int64 polygonId = 6; // Полигон 
+ optional string launchSystem = 7; // Стартовый комплекс 
+ optional uint64 tenDaysBefore = 8; // Дата 10 сут готовности 
+ optional uint64 threeDaysBefore = 9; // Дата 3 суточной готовности 
+ optional string note = 10; // Примечание 
+ optional int64 documentId = 11; // Документ 
+ repeated int64 launchContentId = 12; // Состав запуска 
+ optional int64 historyHeadId = 13;
+ optional bool canceled = 14;
+ optional bool postponed = 15;
+ optional uint64 inputStamp = 16;
+}
+
+message LaunchHistoryElementGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional LaunchHistoryElement criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message LaunchHistoryElementGetResponse {
+ repeated LaunchHistoryElement values = 8;
+ optional string errorMsg = 2;
+}
+
+message LaunchHistoryElementRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message LaunchHistoryElementRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message LaunchHistoryElementStoreRequest {
+ required LaunchHistoryElement value = 1;
+ optional string transactionId = 2;
+}
+
+message LaunchHistoryElementStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

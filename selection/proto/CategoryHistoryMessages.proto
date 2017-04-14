@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // История категорий.    @author alex    @uiname История категорий 
+message CategoryHistory {
+ optional int64 id = 1;
+ optional uint64 startTime = 2; // Время начала 
+ optional int32 warrantyMonths = 3; // Гранатия в месяцах 
+ optional int32 warrantyHours = 4; // Гарантия в часах 
+ optional int32 warrantyKilometers = 5; // Гарантия в километрах 
+ optional int64 documentId = 6; // Документ 
+ optional int64 categoryId = 7; // Установленная категория 
+ optional int64 deviceId = 8; // Идентификатор средства, к которому относится история. 
+}
+
+message CategoryHistoryGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional CategoryHistory criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message CategoryHistoryGetResponse {
+ repeated CategoryHistory values = 8;
+ optional string errorMsg = 2;
+}
+
+message CategoryHistoryRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message CategoryHistoryRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message CategoryHistoryStoreRequest {
+ required CategoryHistory value = 1;
+ optional string transactionId = 2;
+}
+
+message CategoryHistoryStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект данного класса содержит информацию о наземном комплексе управления (НКУ). Включает в себя  информацию о пункте {@link #station} и о средстве {@link #device}, которое может данный аппарат,  а также время начала действия {@link startTime}    @author artyom  @author sis    @uiname НКУ   
+message GroundControlComplex {
+ optional int64 id = 1;
+ optional int64 deviceId = 2; // Средство, которое может обслуживать КА. 
+ optional uint64 startTime = 3; // Начало действия НКУ. 
+ optional int64 documentId = 4; // Документ 
+ optional int64 spacecraftTypeId = 5; // Тип КА. 
+}
+
+message GroundControlComplexGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional GroundControlComplex criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message GroundControlComplexGetResponse {
+ repeated GroundControlComplex values = 8;
+ optional string errorMsg = 2;
+}
+
+message GroundControlComplexRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message GroundControlComplexRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message GroundControlComplexStoreRequest {
+ required GroundControlComplex value = 1;
+ optional string transactionId = 2;
+}
+
+message GroundControlComplexStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

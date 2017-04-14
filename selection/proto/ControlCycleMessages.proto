@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Класс Технологического Цикла Управления (ТЦУ). Представляет собой совокупность групп операций  управления {@link #groups} для планрования. ТЦУ определяется видом {@link #type}.    @see ControlOperationGroup  @author Astamir    @uiname ТЦУ 
+message ControlCycle {
+ optional int64 id = 1;
+ optional int32 type = 2; // Вид технологического цикла управления. 
+ optional string name = 3; // Название технологического цикла управления 
+ optional string description = 4; // Описание технологического цикла управления 
+ repeated int64 groupsId = 5; // Список групп операций управления 
+}
+
+message ControlCycleGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlCycle criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlCycleGetResponse {
+ repeated ControlCycle values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlCycleRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlCycleRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlCycleStoreRequest {
+ required ControlCycle value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlCycleStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

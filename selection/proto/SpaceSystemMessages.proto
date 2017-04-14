@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Космическая система (КС).    @author artyom  @author sis    @uiname Космическая система 
+message SpaceSystem {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование. 
+ optional int32 number = 3; // Номер. 
+ optional string purpose = 4; // Назначение. 
+ optional uint64 startTime = 5; // Время начала существования. 
+ optional uint64 endTime = 6; // Время окончания существования. 
+ optional int64 documentId = 7; // Документ. 
+}
+
+message SpaceSystemGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SpaceSystem criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SpaceSystemGetResponse {
+ repeated SpaceSystem values = 8;
+ optional string errorMsg = 2;
+}
+
+message SpaceSystemRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SpaceSystemRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SpaceSystemStoreRequest {
+ required SpaceSystem value = 1;
+ optional string transactionId = 2;
+}
+
+message SpaceSystemStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // План применения и испытаний (перечень работ) для ОГ КА на месяц  @author oxana    @uiname Перечень работ 
+message Outline {
+ optional int64 id = 1;
+ optional int32 month = 2; //Месяц, на который задан план 
+ optional int32 year = 3; //Год, на который задан план 
+ optional int64 controlCenterId = 4; // ЦУП (ПУ) - источник перечня работ 
+ repeated int64 outlineId = 5; //Список работ по отдельным аппаратам 
+ optional string note = 6; //Примечание к плану 
+}
+
+message OutlineGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Outline criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OutlineGetResponse {
+ repeated Outline values = 8;
+ optional string errorMsg = 2;
+}
+
+message OutlineRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OutlineRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OutlineStoreRequest {
+ required Outline value = 1;
+ optional string transactionId = 2;
+}
+
+message OutlineStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

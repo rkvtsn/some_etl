@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой набор операций управления {@link #operations} с некоторым  смещением по времени {@link #offsetRestriction} по отношении к другому набору.    @see ControlOperation  @see TimeRestriction  @author Astamir    @uiname Набор операций управления 
+message ControlSessionItem {
+ optional int64 id = 1;
+ repeated int64 operationsId = 2; // Список операций управления 
+ optional int64 offsetRestrictionId = 3; // Смещение по времени между списками 
+ optional int32 index = 4;
+ optional int64 controlSessionId = 5;
+}
+
+message ControlSessionItemGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlSessionItem criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlSessionItemGetResponse {
+ repeated ControlSessionItem values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlSessionItemRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlSessionItemRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlSessionItemStoreRequest {
+ required ControlSessionItem value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlSessionItemStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

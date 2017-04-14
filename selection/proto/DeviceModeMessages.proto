@@ -1,0 +1,51 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой режим работы средства.    @author astamir  @author sis    @uiname Режим работы 
+message DeviceMode {
+ optional int64 id = 1;
+ optional int32 number = 2; // Номер режима 
+ optional string name = 3; // Название режима 
+ optional string nameInSchedule = 4; // Обозначение в плане 
+ optional string nameOnBoard = 5; // Обозначение на табло 
+ optional int32 informativity = 6; // Информативность 
+ optional string note = 7; // Примечание 
+ optional int64 documentId = 8; // Документ 
+}
+
+message DeviceModeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DeviceMode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DeviceModeGetResponse {
+ repeated DeviceMode values = 8;
+ optional string errorMsg = 2;
+}
+
+message DeviceModeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DeviceModeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DeviceModeStoreRequest {
+ required DeviceMode value = 1;
+ optional string transactionId = 2;
+}
+
+message DeviceModeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

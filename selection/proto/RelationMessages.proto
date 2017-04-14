@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Описание допустимых связей таблиц для унифильтра  @author : vtrusov          Date: 19.04.12  @uiname Настройки унифильтра 
+message Relation {
+ optional int64 id = 1;
+ optional int64 bindingId = 2;
+ optional string fromKey = 3;
+ optional string toKey = 4;
+ optional string checkField = 5;
+ optional string targetTable = 6;
+ optional int64 nextId = 7;
+}
+
+message RelationGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Relation criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message RelationGetResponse {
+ repeated Relation values = 8;
+ optional string errorMsg = 2;
+}
+
+message RelationRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message RelationRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message RelationStoreRequest {
+ required Relation value = 1;
+ optional string transactionId = 2;
+}
+
+message RelationStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

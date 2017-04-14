@@ -1,0 +1,57 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //   @author aemaeth   @uiname Состав запуска 
+message LaunchContent {
+ optional int64 id = 1;
+ optional int32 priority = 2; // Приоритет в составе 
+ optional int64 spacecraftId = 3; // КА 
+ optional string spacecraftName = 4;
+ optional int64 appointmentId = 5; // Назначение 
+ optional int64 countryId = 6;
+ optional int64 ownedId = 7;
+ optional string note = 8;
+ optional string recordType = 9;
+ optional uint64 inputTime = 10; // Время ввода 
+ optional uint64 preparationStartTime = 11; // Время начала подготовки 
+ optional string uuid = 12;
+ optional int32 index = 13;
+ optional int64 launchHistoryElementId = 14; // Запуск 
+}
+
+message LaunchContentGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional LaunchContent criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message LaunchContentGetResponse {
+ repeated LaunchContent values = 8;
+ optional string errorMsg = 2;
+}
+
+message LaunchContentRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message LaunchContentRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message LaunchContentStoreRequest {
+ required LaunchContent value = 1;
+ optional string transactionId = 2;
+}
+
+message LaunchContentStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

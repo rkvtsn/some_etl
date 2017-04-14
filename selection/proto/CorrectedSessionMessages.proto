@@ -1,0 +1,58 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov  Date: 16.01.13  Исходное состояние сессии на момент очередного утверждения плана  @uiname Начальное состояние сессии 
+message CorrectedSession {
+ optional int64 id = 1;
+ optional int64 correctionId = 2; // Ссылка коррекцию 
+ optional int64 stationId = 3; // ПУ 
+ optional uint64 startTime = 4; // Начало сеанса связи. 
+ optional uint64 endTime = 5; // Конец сеанса связи. 
+ optional int64 spacecraftId = 6; // КА 
+ optional int32 type = 7; // тип сеанса управления. 
+ optional int32 executionResult = 8; // результат выполнения сеанса. 
+ optional int32 loop = 9; // Номер витка. 
+ optional bool nu = 10; // Флаг НУ. 
+ optional bool kpi = 11; // Флаг КПИ. 
+ optional bool correctedInExecutionDay = 12; // Флаг коррекции сеанса в день выполнения плана 
+ optional bool tgs = 13; // Флаг ТГС. 
+ optional uint64 equatorTime = 14; // Время экватора. 
+ repeated int64 correctedSessionDevicesId = 15; // список используемых конкретных средств и режимов. 
+}
+
+message CorrectedSessionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional CorrectedSession criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message CorrectedSessionGetResponse {
+ repeated CorrectedSession values = 8;
+ optional string errorMsg = 2;
+}
+
+message CorrectedSessionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectedSessionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message CorrectedSessionStoreRequest {
+ required CorrectedSession value = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectedSessionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

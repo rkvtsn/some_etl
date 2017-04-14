@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Выписка из плана   @author vtrusov    @uiname Выписка 
+message Extraction {
+ optional int64 id = 1;
+ optional uint64 sentTime = 2; // Время отправки 
+ optional uint64 receiveTime = 3; // Время получения 
+ optional int64 scheduleId = 4; // план по которому делается выписка 
+ optional uint64 date = 5; // Дата плана для которого сделана выписка. 
+ optional int64 subscriberId = 6; // абонент 
+ repeated int64 extractedSessionsId = 7; // Список сессий, вошедших в выписку 
+}
+
+message ExtractionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Extraction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ExtractionGetResponse {
+ repeated Extraction values = 8;
+ optional string errorMsg = 2;
+}
+
+message ExtractionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ExtractionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ExtractionStoreRequest {
+ required Extraction value = 1;
+ optional string transactionId = 2;
+}
+
+message ExtractionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

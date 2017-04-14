@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 30.05.12  @uiname Режимы работы 
+message Sokpp {
+ optional int64 id = 1;
+ optional string fullName = 2; // Наименование 
+ optional string shortName = 3; // Краткое наименование 
+ optional string filter = 4; // Фильтр 
+ optional int64 sokppModeId = 5; // Режим работы СОКПП 
+ optional bool readOnly = 6; // есди true, то абонент может видеть перечисленные в фильтрах сущности,  но не может их редактировать 
+}
+
+message SokppGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Sokpp criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SokppGetResponse {
+ repeated Sokpp values = 8;
+ optional string errorMsg = 2;
+}
+
+message SokppRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SokppRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SokppStoreRequest {
+ required Sokpp value = 1;
+ optional string transactionId = 2;
+}
+
+message SokppStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

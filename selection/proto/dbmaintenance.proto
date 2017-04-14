@@ -1,0 +1,90 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "DBMaintenanceProtos";
+
+message CheckTargetDatabaseExistsRequest {
+    required string login = 1;
+    required string password = 2;
+    required string ip = 3;
+    optional int32 port = 4;
+    required string dbname = 5;
+}
+
+message CheckTargetDatabaseExistsResponse {
+    required bool exists = 1;
+}
+
+message BackupDatabaseRequest {
+
+}
+
+message BackupDatabaseResponse {
+    required string dumpName = 1;
+}
+
+message RemoveDumpRequest {
+    repeated string dumpNames = 1;
+}
+
+message RemoveDumpResponse {
+
+}
+
+message DumpInfo {
+     required uint64 date = 1;
+     required string path = 2;
+     required int64 size = 3;
+}
+
+message DumpInfoSelectRequest {
+
+}
+
+message DumpInfoSelectResponse {
+    repeated DumpInfo dumpInfo = 1;
+}
+
+message RestoreDatabaseRequest {
+    required string login = 1;
+    required string password = 2;
+    required string ip = 3;
+    optional int32 port = 4;
+    required string dbname = 5;
+    required bool removeIfExists = 6;
+    required string dumpName = 7;
+}
+
+message RestoreDatabaseResponse {
+
+}
+
+message CheckZPUModeRequest {
+
+}
+
+message CheckZPUModeResponse {
+    required bool zpuMode = 1;
+}
+
+message ZpuInfo {
+    required string name = 1;
+    required string url = 2;
+}
+
+message ZpuInfoSelectRequest {
+
+}
+
+message ZpuInfoSelectResponse {
+    repeated ZpuInfo zpu = 1;
+}
+
+message SyncZpuRequest {
+    required string zpuName = 1;
+}
+
+message SyncZpuResponse {
+    optional string mergeResult = 1;
+}

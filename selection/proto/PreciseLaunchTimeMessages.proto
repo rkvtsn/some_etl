@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //   @author aemaeth   @uiname Точное время запуска 
+message PreciseLaunchTime {
+ optional int64 id = 1;
+ optional uint64 date = 2; // Время старта 
+ optional uint64 exactTime = 3; // Точное время запуска. 
+ optional string userName = 4; // Фио 
+ optional uint64 inputTime = 5; // Дата ввода 
+ optional int64 documentId = 6; // Документ 
+ optional bool abnormal = 7;
+}
+
+message PreciseLaunchTimeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional PreciseLaunchTime criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message PreciseLaunchTimeGetResponse {
+ repeated PreciseLaunchTime values = 8;
+ optional string errorMsg = 2;
+}
+
+message PreciseLaunchTimeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message PreciseLaunchTimeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message PreciseLaunchTimeStoreRequest {
+ required PreciseLaunchTime value = 1;
+ optional string transactionId = 2;
+}
+
+message PreciseLaunchTimeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

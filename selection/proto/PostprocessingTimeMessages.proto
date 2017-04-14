@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author artyom    @uiname Время постобработки   
+message PostprocessingTime {
+ optional int64 id = 1;
+ optional int64 deviceModeId = 2; // Режим 
+ optional int64 spacecraftTypeId = 3; // Тип ЛА 
+ optional uint64 duration = 4; // Длительность постобработки 
+ optional int64 deviceTypeId = 5; // Тип устройства, к которому относится данное время 
+}
+
+message PostprocessingTimeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional PostprocessingTime criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message PostprocessingTimeGetResponse {
+ repeated PostprocessingTime values = 8;
+ optional string errorMsg = 2;
+}
+
+message PostprocessingTimeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message PostprocessingTimeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message PostprocessingTimeStoreRequest {
+ required PostprocessingTime value = 1;
+ optional string transactionId = 2;
+}
+
+message PostprocessingTimeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

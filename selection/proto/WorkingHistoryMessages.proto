@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //Объект представляет собой историю наработки средства    @author astamir    @uiname История наработки средства 
+message WorkingHistory {
+ optional int64 id = 1;
+ optional uint64 inputTime = 2; // Время ввода. 
+ optional int32 months = 3; // Количество лет. 
+ optional int32 hours = 4; // Количество часов. 
+ optional int32 kilometers = 5; // Количество километров. 
+ optional int64 documentId = 6; // Документ 
+ optional int64 deviceId = 7; // Идентификатор средства, к которому относится история. 
+}
+
+message WorkingHistoryGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional WorkingHistory criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message WorkingHistoryGetResponse {
+ repeated WorkingHistory values = 8;
+ optional string errorMsg = 2;
+}
+
+message WorkingHistoryRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message WorkingHistoryRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message WorkingHistoryStoreRequest {
+ required WorkingHistory value = 1;
+ optional string transactionId = 2;
+}
+
+message WorkingHistoryStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

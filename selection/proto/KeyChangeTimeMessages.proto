@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса содержит информацию о времени, необходимом для смены СКК. Время смены  {@link #time} опредеяется по аппарату из первого сеанса {@link #firstSpacecraft} и аппарату  второго сеанса {@link #secondSpacecraft}    @author Artyom    @uiname СКК 
+message KeyChangeTime {
+ optional int64 id = 1;
+ optional int32 umn1 = 2; // Аппарат в первом сеансе. 
+ optional int32 umn2 = 3; // Аппарат во втором сеансе. 
+ optional uint64 time = 4; // Время смены СКК. 
+ optional int64 deviceTypeId = 5; // Тип устройства, к которому относится данное время 
+}
+
+message KeyChangeTimeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional KeyChangeTime criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message KeyChangeTimeGetResponse {
+ repeated KeyChangeTime values = 8;
+ optional string errorMsg = 2;
+}
+
+message KeyChangeTimeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message KeyChangeTimeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message KeyChangeTimeStoreRequest {
+ required KeyChangeTime value = 1;
+ optional string transactionId = 2;
+}
+
+message KeyChangeTimeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

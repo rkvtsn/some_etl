@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой ограничение по зоне радиовидимости. Границы времени low и high  показывают насколько нужно отступить от начала и конца зоны соответственно. [TначЗРВ;ТконЗРВ] +  [low;high]      @see TimeRestriction  @see EventRestriction  @see DailyRestriction    @author Astamir    @uiname Ограничение по зоне радиовидимости 
+message ZoneRestriction {
+ optional int64 id = 1;
+ optional uint64 low = 2; // Нижняя граница ограничения. 
+ optional uint64 high = 3; // Верхняя граница ограничения. 
+ optional string description = 4; // Описание. 
+ optional int32 index = 5;
+ optional int64 controlSessionId = 6;
+}
+
+message ZoneRestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ZoneRestriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ZoneRestrictionGetResponse {
+ repeated ZoneRestriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message ZoneRestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ZoneRestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ZoneRestrictionStoreRequest {
+ required ZoneRestriction value = 1;
+ optional string transactionId = 2;
+}
+
+message ZoneRestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

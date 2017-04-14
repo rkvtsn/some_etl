@@ -1,0 +1,36 @@
+{
+  "radient": [
+    {
+      "target.years_of_life": {
+        "persons_1.age": "value"
+      },
+      "target.fullname": {
+        "persons_1.name": "value"
+      }
+    },
+    {
+      "target.years_of_life": {
+        "persons_2.age": "value"
+      },
+      "target.fullname": {
+        "persons_2.name": "value"
+      }
+    },
+    {
+      "target.years_of_life": {
+        "persons_3.age": "value"
+      },
+      "target.fullname": {
+        "persons_3.name": "value"
+      }
+    },
+    {
+      "target.years_of_life": {
+        "persons_4.a": "value"
+      },
+      "target.fullname": {
+        "persons_4.fullname": "value"
+      }
+    }
+  ]
+}

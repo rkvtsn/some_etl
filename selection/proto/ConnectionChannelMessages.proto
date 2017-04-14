@@ -1,0 +1,68 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Created by IntelliJ IDEA.  User: vfoteeva  Date: 22.09.11  Time: 12:18   @uiname Канал связи 
+message ConnectionChannel {
+ optional int64 id = 1;
+ optional int64 number = 2;
+ optional int64 connectionFunctionId = 3;
+ optional int64 systemId = 4;
+ optional int64 directionToId = 5;
+ optional int64 directionFromId = 6;
+ optional int64 startingSusId = 7;
+ optional int64 endingSusId = 8;
+ optional int64 connectionTypeId = 9;
+ optional string linkingHubTo = 10;
+ optional string linkingHubFrom = 11;
+ optional int64 rentTypeId = 12;
+ optional int64 rentDuration = 13;
+ optional string pdSpeed = 14;
+ optional string pdLevel = 15;
+ optional string owner = 16;
+ optional string arendator = 17;
+ optional string length = 18;
+ optional float cost = 19;
+ optional string orderNumber = 20;
+ optional string note = 21;
+ optional string msCzoneLine = 22;
+ optional string line = 23;
+ optional int64 channelGroupNumber = 24;
+ optional int64 channelNumberInGroup = 25;
+}
+
+message ConnectionChannelGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ConnectionChannel criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ConnectionChannelGetResponse {
+ repeated ConnectionChannel values = 8;
+ optional string errorMsg = 2;
+}
+
+message ConnectionChannelRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionChannelRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ConnectionChannelStoreRequest {
+ required ConnectionChannel value = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionChannelStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

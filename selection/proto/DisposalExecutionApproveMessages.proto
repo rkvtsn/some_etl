@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author vpermyakov          Date: 01.05.12          Time: 15:32          <p/>          Справочник Вариантов подтверждения выполнения сессии   @uiname Оценка выполнения 
+message DisposalExecutionApprove {
+ optional int64 id = 1;
+ optional string name = 2;
+ optional string description = 3;
+}
+
+message DisposalExecutionApproveGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalExecutionApprove criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalExecutionApproveGetResponse {
+ repeated DisposalExecutionApprove values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalExecutionApproveRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalExecutionApproveRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalExecutionApproveStoreRequest {
+ required DisposalExecutionApprove value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalExecutionApproveStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

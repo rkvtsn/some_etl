@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет ограничение по событию между сеансами управления. Данное ограничение  отталкивается от некоторого абстрактного события и определяет возможное начало планирования. Tсоб  + [low;high].Определяется типов события {@link #eventType}.  Так же в классе указывается описание события.      @see ZoneRestriction  @see TimeRestriction  @see DailyRestriction    @author Astamir    @uiname Ограничение по событию между сеансами управления 
+message EventRestriction {
+ optional int64 id = 1;
+ optional uint64 low = 2; // Нижняя граница ограничения. 
+ optional uint64 high = 3; // Верхняя граница ограничения. 
+ optional int64 eventTypeId = 4;
+ optional string restrictionTimeRelationString = 5;
+ optional int32 index = 6;
+ optional int64 controlSessionId = 7;
+}
+
+message EventRestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional EventRestriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message EventRestrictionGetResponse {
+ repeated EventRestriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message EventRestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message EventRestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message EventRestrictionStoreRequest {
+ required EventRestriction value = 1;
+ optional string transactionId = 2;
+}
+
+message EventRestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

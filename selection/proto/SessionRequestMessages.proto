@@ -1,0 +1,57 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой заявку на использование средства.    @author Artyom    @uiname Заявка на использование средства   
+message SessionRequest {
+ optional int64 id = 1;
+ optional int64 stationId = 2; // Пункт, на котором необходимо обслужить заявку. 
+ optional int64 spacecraftId = 3; // Космический аппарат, для которого необходимо выполнить заявку. 
+ optional uint64 equatorTime = 4; // Время экватора. 
+ optional int32 loop = 5; // Номер витка. 
+ optional uint64 startTime = 6; // Время начала сеанса 
+ optional uint64 endTime = 7; // Время окончания сеанса 
+ repeated int64 modesId = 8; // Список задействуемых средств и режимов. 
+ optional bool valid = 9; // Признак корректности заявки. 
+ optional uint64 receiveTime = 10; // Время получения заявки. 
+ optional string note = 11; // Примечание. 
+ optional string cogName = 12; // Название ГОУ или связки ГОУ по которой была создан этот SessionRequest. 
+ optional bool checkBallistic = 13; // Признак доопределения баллистики. 
+ optional int64 requestId = 14;
+}
+
+message SessionRequestGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SessionRequest criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SessionRequestGetResponse {
+ repeated SessionRequest values = 8;
+ optional string errorMsg = 2;
+}
+
+message SessionRequestRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SessionRequestRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SessionRequestStoreRequest {
+ required SessionRequest value = 1;
+ optional string transactionId = 2;
+}
+
+message SessionRequestStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

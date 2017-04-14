@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 30.05.12          Режимы работы СОКПП   @uiname Список режимов работы 
+message SokppMode {
+ optional int64 id = 1;
+ optional string name = 2; // Название режима 
+ optional bool active = 3; // Только 1 выбранный режим м.б. использован 
+}
+
+message SokppModeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SokppMode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SokppModeGetResponse {
+ repeated SokppMode values = 8;
+ optional string errorMsg = 2;
+}
+
+message SokppModeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SokppModeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SokppModeStoreRequest {
+ required SokppMode value = 1;
+ optional string transactionId = 2;
+}
+
+message SokppModeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

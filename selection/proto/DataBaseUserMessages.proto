@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // User: vpermyakov  Date: 20.10.11  Time: 10:53   @uiname Пользователь 
+message DataBaseUser {
+ optional int64 id = 1;
+ optional string userName = 2;
+ optional string fio = 3;
+ optional string phone = 4;
+ optional string subdivision = 5;
+ repeated int64 userWorkstationsId = 6;
+ optional string userGroups = 7;
+}
+
+message DataBaseUserGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DataBaseUser criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DataBaseUserGetResponse {
+ repeated DataBaseUser values = 8;
+ optional string errorMsg = 2;
+}
+
+message DataBaseUserRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DataBaseUserRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DataBaseUserStoreRequest {
+ required DataBaseUser value = 1;
+ optional string transactionId = 2;
+}
+
+message DataBaseUserStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

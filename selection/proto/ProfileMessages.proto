@@ -1,0 +1,55 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект представляет собой профиль - загрузка средств по датам.   При редактировании этого файла надо  обязательно проверить работоспособность ProfilesComputeHandler-а    @author astamir    @uiname Профиль   
+message Profile {
+ optional int64 id = 1;
+ optional uint64 date = 2; // Дата расчёта 
+ optional int64 spacecraftTypeId = 3; // Тип КА 
+ optional int64 stageTypeId = 4; // Этап эксплуатации 
+ optional int64 stationId = 5; // Пункт эксплуатации 
+ optional int64 deviceTypeId = 6; // Этап эксплуатации 
+ optional uint64 intervalStart = 7; // Дата начала интервала 
+ optional uint64 intervalEnd = 8; // Дата окончания интервала 
+ optional int32 stageTypeAverageDuration = 9; // Средняя продолжительность этапа эксплуатации в днях 
+ optional double sessions = 10; // Количество сеансов работы средства. 
+ optional int32 seconds = 11; // Количество секунд работы средства. 
+ optional int32 type = 12; // Тип рассчёта  0 - Не рассчитан  1 - Статистика  2 - ТЦУ  3 - Вручную 
+}
+
+message ProfileGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Profile criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ProfileGetResponse {
+ repeated Profile values = 8;
+ optional string errorMsg = 2;
+}
+
+message ProfileRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ProfileRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ProfileStoreRequest {
+ required Profile value = 1;
+ optional string transactionId = 2;
+}
+
+message ProfileStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

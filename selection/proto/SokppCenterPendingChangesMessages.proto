@@ -1,0 +1,55 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 14.11.13          Только для поддержки "горячего" резервирования БД в центре 
+message SokppCenterPendingChanges {
+ optional int64 id = 1;
+ optional string schemaName = 2;
+ optional string tableName = 3;
+ optional string operationName = 4;
+ optional int64 idValue = 5;
+ optional uint64 changeTime = 6;
+ optional string firstKeyName = 7;
+ optional string secondKeyName = 8;
+ optional int64 firstKeyOldValue = 9;
+ optional int64 secondKeyOldValue = 10;
+ optional int64 firstKeyNewValue = 11;
+ optional int64 secondKeyNewValue = 12;
+}
+
+message SokppCenterPendingChangesGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SokppCenterPendingChanges criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SokppCenterPendingChangesGetResponse {
+ repeated SokppCenterPendingChanges values = 8;
+ optional string errorMsg = 2;
+}
+
+message SokppCenterPendingChangesRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SokppCenterPendingChangesRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SokppCenterPendingChangesStoreRequest {
+ required SokppCenterPendingChanges value = 1;
+ optional string transactionId = 2;
+}
+
+message SokppCenterPendingChangesStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

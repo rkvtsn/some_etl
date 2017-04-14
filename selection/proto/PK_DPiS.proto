@@ -1,0 +1,134 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+
+option java_outer_classname = "DPiSProtos";
+
+enum SortOrder {
+    NO = 1;
+    ASC = 2;
+    DESC = 3;
+}
+
+enum ReportElementType {
+    SPACECRAFT = 1;
+    SPACECRAFT_TYPE = 2;
+    SPACECRAFT_OWNER = 3;
+    CORRECTION_REASON = 4;
+    EQUIPMENT_STATE = 5;
+    EQUIPMENT_NAME = 6;
+
+    DEVICE = 7;
+    DEVICE_SERIAL = 8;
+    DEVICE_TYPE = 9;
+    DEVICE_PRIMARY = 10;
+    DEVICE_CLASS = 11;
+    DEVICE_MODE = 12;
+
+    RESTRICTION_NAME = 13;
+
+    STATION = 14;
+    STATION_TYPE = 15;
+
+    DAYS = 16;
+    WEEKS = 17;
+    MONTH = 18;
+    YEARS = 19;
+
+    LAUNCH_TYPE = 20;
+    LAUNCH_YEAR = 21;
+    LAUNCH_STATE = 22;
+    LAUNCH_ANOMAL = 23;
+    LAUNCH_POSTPONED = 24;
+
+    CONTROL_CENTER = 25;
+    CONTROL_NAME = 26;
+    CONTROL_GENERAL_NAME = 27;
+    CONTROL_FULL_NAME = 28;
+    STATION_GROUP_NAME = 29;
+
+    SPACECRAFT_NAME = 30;
+    SPACECRAFT_TYPE_NAME = 31;
+    DEVICE_NAME = 32;
+    FREQUENCY = 33;
+    SYSTEMATIZATION_CODE = 34;
+}
+
+enum MeasureType {
+    SESSION_COUNT = 1;
+    SESSION_DURATION = 2;
+
+    SPACECRAFT_COUNT = 3;
+
+    DEVICE_COUNT_UNIQUE = 4;
+    DEVICE_COUNT = 5;
+    STATION_COUNT = 6;
+    RESTRICTION_COUNT = 7;
+    RESTRICTION_DURATION = 8;
+
+    LAUNCH_COUNT = 9;
+
+    CORRECTION_COUNT = 10;
+    SPACECRAFT_OOG_COUNT = 11;
+    DEVICE_TYPE_COUNT = 12;
+    SPACECRAFT_COUNT_UNIQUE = 13;
+    SPACECRAFT_COUNT_PLAN = 14;
+    SESSION_SYSTEMATIZATION = 15;
+}
+
+enum FilterType {
+    UMN_FILTER = 1;
+    SPACECRAFT_TYPE_FILTER = 2;
+    DEVICE_TYPE_FILTER = 3;
+    DEVICE_MODE_FILTER = 4;
+    STATION_FILTER = 5;
+    AND_FILTER = 6;
+    OR_FILTER = 7;
+}
+
+message MeasureElement {
+    required MeasureType type = 1;
+    required string alias = 2;
+    required SortOrder order = 3;
+}
+
+message ReportRequestElement {
+    required ReportElementType type = 1;
+    required string alias = 2;
+    required SortOrder order = 3;
+}
+
+message FilterElement {
+    required FilterType type = 1;
+    extensions 10 to 100;
+}
+
+message AtomicFilter {
+    extend FilterElement {
+        repeated int32 data = 11;
+    }
+}
+
+message CompositeFilter {
+    extend FilterElement {
+        repeated FilterElement data = 21;
+    }
+}
+
+message ReportRequest {
+    required int64 start_date = 1;
+    required int64 end_date = 2;
+    repeated MeasureElement measures = 3;
+    repeated ReportRequestElement elements = 4;
+    optional FilterElement filter = 5;
+}
+
+message ComputeProfileRequest {
+    repeated int64 spacecraft_type_ids = 1 [packed=true];
+    required int64 start = 2;
+    required int64 end = 3;
+}
+
+message ComputeProfileResponse {
+    repeated int64 profile_ids = 1 [packed=true];
+}

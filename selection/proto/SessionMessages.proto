@@ -1,0 +1,63 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Сессия из расписания.    @author sis  @author Artyom    @uiname Сессия 
+message Session {
+ optional int64 id = 1;
+ optional int64 stationId = 2; // пункт, выполняющий сеанс связи. 
+ optional uint64 startTime = 3; // Начало сеанса связи. 
+ optional uint64 endTime = 4; // Конец сеанса связи. 
+ optional int64 spacecraftId = 5; // космический аппарат. 
+ optional int32 type = 6; // тип сеанса управления. 
+ optional int32 executionResult = 7; // результат выполнения сеанса. 
+ optional int64 sessionRequestId = 8; // Исходная заявка. 
+ optional int32 loop = 9; // Номер витка. 
+ optional bool nu = 10; // Флаг НУ. 
+ optional bool kpi = 11; // Флаг КПИ. 
+ optional bool corrected = 12; // Флаг коррекции сеанса 
+ optional bool correctedInExecutionDay = 13; // Флаг коррекции сеанса в день выполнения плана 
+ optional bool tgs = 14; // Флаг ТГС. 
+ optional uint64 equatorTime = 15; // Время экватора. 
+ repeated int64 sessionDevicesId = 16; // список используемых конкретных средств и режимов. 
+ optional bool extendingDefinitionAvailable = 17; // Возможность доопределения по баллистике 
+ optional int64 scheduleId = 18; // Ид плана 
+ optional uint64 preDuration = 19; // Время, требуемое на подготовку к сеансу 
+ optional uint64 postDuration = 20; // Время, требуемое на постобработку после сеанса 
+}
+
+message SessionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Session criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SessionGetResponse {
+ repeated Session values = 8;
+ optional string errorMsg = 2;
+}
+
+message SessionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SessionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SessionStoreRequest {
+ required Session value = 1;
+ optional string transactionId = 2;
+}
+
+message SessionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

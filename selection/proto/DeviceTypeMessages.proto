@@ -1,0 +1,90 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой тип средства.   @author astamir  @author sis  @uiname Тип средства 
+message DeviceType {
+ optional int64 id = 1;
+ optional int32 number = 2; // Номер типа 
+ optional string shortName = 3; // Краткое наименование 
+ optional string fullName = 4; // Полное наименование 
+ optional string index = 5; // Индекс 
+ optional string workingName = 6; // Рабочее наименование 
+ optional bool primaryDevice = 7; // Основной или вспомогательный. 
+ optional string kvtMO = 8; // КВТ МО 
+ optional string okp = 9; // ОКП 
+ optional int32 warrantyHours = 10; // Гарантия в часах 
+ optional int32 warrantyMonths = 11; // Гарантия в месяцах 
+ optional int32 warrantyYears = 12; // Гарантия в годах 
+ optional int32 warrantyKm = 13; // Гарантия в километрах 
+ optional int32 windRestriction = 14; // Ограничение по ветру 
+ optional int32 minInternalTemp = 15; // Нижняя граница ограничения по температуре в машинном зале 
+ optional int32 maxInternalTemp = 16; // Верхняя граница ограничения по температуре в машинном зале 
+ optional int32 minExternalTemp = 17; // Нижняя граница ограничения по внешней темепературе 
+ optional int32 maxExternalTemp = 18; // Верхняя граница ограничения по внешней темепературе 
+ optional uint64 maxUptime = 19; // Максимальное время непрерывной работы 
+ optional uint64 breakDuration = 20; // Длительность перерыва в работе 
+ optional int32 minHumidity = 21; // Нижняя граница диапазона влажности 
+ optional int32 maxHumidity = 22; // Верхняя граница диапазона влажности 
+ optional int32 minAtmosphericPressure = 23; // Нижняя граница диапазона атмосферного давления 
+ optional int32 maxAtmosphericPressure = 24; // Верхняя граница диапазона атмосферного давления 
+ optional uint64 unscheduledPreparationTime = 25; // Время внепланового задействования 
+ optional uint64 nuTransmitTime = 26; // Время передачи начальных условий (НУ) 
+ optional uint64 kpiTransmitTime = 27; // Время передачи КПИ 
+ optional bool hasSKK = 28; // Признак наличия СКК 
+ optional string note = 29; // Примечание 
+ optional int64 deviceClassId = 30; // Вид средства 
+ optional int64 developerId = 31; // Разработчик 
+ optional int64 antennaTypeId = 32; // Тип антенной системы 
+ optional int32 maxSessions = 33; // Максимально допустимое число сеансов в день 
+ optional int32 maxHours = 34; // Максимальное число сеансов в год 
+ optional int32 includedReadiness = 35; // битовый массив поддерживаемых готовностей  используются первые 6 бит числа  0 - готовность используется  1 - готовность исключается   0 - 5м  1 - 15м  2 - 30м  3 - 1ч  4 - 2ч  5 - 3ч 
+ repeated int64 recieveFrequenciesId = 36; // Частоты приёма 
+ repeated int64 transmitFrequenciesId = 37; // Частоты передачи 
+ repeated int64 postprocessingTimeId = 38; // Время постобработки 
+ repeated int64 incompatibleDeviceTypesId = 39; // Несовместимые средства 
+ repeated int64 parallelUsesId = 40; // Возможность одновременного использования 
+ repeated int64 keyChangeTimeId = 41; // Время смены СКК 
+ repeated int64 supportedDeviceModesId = 42;
+ repeated int64 switchTimeId = 43; // Время перехода 
+ optional int64 documentId = 44; // Документ 
+ optional int64 systematizationCodeId = 45; // Код систематизации  
+ optional int32 systematizaionValue = 46; // Коэффициент для расчёта систематизации   
+ optional bool planned = 47; // Являются ли средства данного типа планируемыми. 
+}
+
+message DeviceTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DeviceType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DeviceTypeGetResponse {
+ repeated DeviceType values = 8;
+ optional string errorMsg = 2;
+}
+
+message DeviceTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DeviceTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DeviceTypeStoreRequest {
+ required DeviceType value = 1;
+ optional string transactionId = 2;
+}
+
+message DeviceTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //   @author astamir   @uiname Ограничение смещения 
+message OffsetRestriction {
+ optional int64 id = 1;
+ optional uint64 low = 2; // Нижняя граница ограничения. 
+ optional uint64 high = 3; // Верхняя граница ограничения. 
+ optional string restrictionTimeRelationString = 4;
+}
+
+message OffsetRestrictionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional OffsetRestriction criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OffsetRestrictionGetResponse {
+ repeated OffsetRestriction values = 8;
+ optional string errorMsg = 2;
+}
+
+message OffsetRestrictionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OffsetRestrictionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OffsetRestrictionStoreRequest {
+ required OffsetRestriction value = 1;
+ optional string transactionId = 2;
+}
+
+message OffsetRestrictionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

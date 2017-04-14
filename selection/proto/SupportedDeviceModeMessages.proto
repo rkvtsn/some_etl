@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой поддерживаемые режимы для типа средства.    @author astamir    @uiname Поддерживаемый режим 
+message SupportedDeviceMode {
+ optional int64 id = 1;
+ optional string note = 2; // Примечание. 
+ optional int64 deviceModeId = 3; // Поддерживаемый режим. 
+ optional int64 deviceTypeId = 4; // Тип устройства, к которому относится данный объект 
+}
+
+message SupportedDeviceModeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SupportedDeviceMode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SupportedDeviceModeGetResponse {
+ repeated SupportedDeviceMode values = 8;
+ optional string errorMsg = 2;
+}
+
+message SupportedDeviceModeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SupportedDeviceModeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SupportedDeviceModeStoreRequest {
+ required SupportedDeviceMode value = 1;
+ optional string transactionId = 2;
+}
+
+message SupportedDeviceModeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

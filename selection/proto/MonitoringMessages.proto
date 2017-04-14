@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Created by IntelliJ IDEA.  User: vfoteeva  Date: 26.10.11  Time: 12:33  To change this template use File | Settings | File Templates. 
+message Monitoring {
+ optional int64 id = 1;
+ optional string ip = 2;
+ optional string agentName = 3;
+ optional string status = 4;
+ optional string cause = 5;
+}
+
+message MonitoringGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Monitoring criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message MonitoringGetResponse {
+ repeated Monitoring values = 8;
+ optional string errorMsg = 2;
+}
+
+message MonitoringRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message MonitoringRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message MonitoringStoreRequest {
+ required Monitoring value = 1;
+ optional string transactionId = 2;
+}
+
+message MonitoringStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

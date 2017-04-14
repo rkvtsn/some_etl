@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Режим несения дежурства.    @author eas  @uiname Режим несения дежурства 
+message DutyMode {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование. 
+ optional string note = 3; // Примечание. 
+}
+
+message DutyModeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DutyMode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DutyModeGetResponse {
+ repeated DutyMode values = 8;
+ optional string errorMsg = 2;
+}
+
+message DutyModeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DutyModeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DutyModeStoreRequest {
+ required DutyMode value = 1;
+ optional string transactionId = 2;
+}
+
+message DutyModeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

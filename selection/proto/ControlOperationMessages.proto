@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой операцию управления, состоящую из набора единиц управления -  основной единицы управления {@link #mainDeviceType} и списка альтернативных  {@link #secondaryItems}.    @see ControlOperationItem    @author astamir    @uiname Операция управления 
+message ControlOperation {
+ optional int64 id = 1;
+ optional int64 mainDeviceTypeId = 2; // Основное средство единицы управления 
+ repeated int64 mainModesId = 3; // Основные режимы единицы управления  
+ repeated int64 secondaryItemsId = 4; // Список альтернативных единиц управления 
+ optional int32 index = 5;
+ optional int64 controlSessionItemId = 6;
+}
+
+message ControlOperationGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlOperation criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlOperationGetResponse {
+ repeated ControlOperation values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlOperationStoreRequest {
+ required ControlOperation value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlOperationStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

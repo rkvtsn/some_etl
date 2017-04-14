@@ -1,0 +1,53 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Тип ЛА(Изделия, РН, РБ, КА).   @author astamir    @uiname Тип ЛА 
+message GeneralSpacecraftType {
+ optional int64 id = 1;
+ optional int32 number = 2;
+ optional string view = 3;
+ optional uint64 startDate = 4; // Время начала 
+ optional uint64 endDate = 5; // Время окончания 
+ optional string note = 6; // Примечание 
+ optional string purpose = 7; // Назначение 
+ optional int64 appointmentId = 8; // Нзначение КА 
+ repeated int64 umnRangesId = 9; // Диапазоны УМН 
+ optional int64 documentId = 10; // Документ 
+}
+
+message GeneralSpacecraftTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional GeneralSpacecraftType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message GeneralSpacecraftTypeGetResponse {
+ repeated GeneralSpacecraftType values = 8;
+ optional string errorMsg = 2;
+}
+
+message GeneralSpacecraftTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message GeneralSpacecraftTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message GeneralSpacecraftTypeStoreRequest {
+ required GeneralSpacecraftType value = 1;
+ optional string transactionId = 2;
+}
+
+message GeneralSpacecraftTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

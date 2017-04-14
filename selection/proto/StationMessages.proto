@@ -1,0 +1,65 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ //Объект класса представляет собой ПЭ.   @author astamir  @author sis   @uiname ПЭ 
+message Station {
+ optional int64 id = 1;
+ optional int32 number = 2; // Номер 
+ optional int32 timeZone = 3; // Часовое смещение 
+ optional string name = 4; // Позывной 
+ optional int32 ckikNumber = 5; // Номер ЦКИК 
+ optional uint64 arriveTime = 6; // Время прибытия в не рабочее время 
+ optional uint64 arriveTimeInWorkTime = 7; // Время прибытия в рабочее время 
+ optional int64 arrivalDocumentId = 8; // Документ прибытия 
+ optional uint64 workDayStart = 9; // Начало рабочего дня 
+ optional uint64 workDayEnd = 10; // Конец рабочего дня 
+ optional double latitude = 11; // Широта 
+ optional double longitude = 12; // Долгота 
+ optional double altitude = 13; // Высота 
+ optional int64 documentId = 14; // Документ 
+ optional int64 typeId = 15; // Тип 
+ repeated int64 nonCompatibleStationsId = 16; // Список несовместимых ПЭов 
+ repeated int64 devicesId = 17; // Список средств. 
+ optional int64 stationGroupId = 18; // Группа родитель  
+ optional uint64 startDate = 19; // дата ввода ПЭ в эксплуатацию 
+ optional uint64 endDate = 20; // дата вывода ПЭ из эксплуатации 
+ optional string baseNumber = 21; // номер воинской части 
+ optional double minAngle = 22; // аналог одноименного поля в справочнике "Средство" 
+}
+
+message StationGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Station criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message StationGetResponse {
+ repeated Station values = 8;
+ optional string errorMsg = 2;
+}
+
+message StationRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message StationRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message StationStoreRequest {
+ required Station value = 1;
+ optional string transactionId = 2;
+}
+
+message StationStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

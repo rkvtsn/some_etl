@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет схему выполнения группы операций управления. Представляет собой набор  сеансов управления {@link #sessions}.    @see ControlSession  @see ControlOperationGroup    @author Astamir    @uiname Схема выполнения 
+message ControlScheme {
+ optional int64 id = 1;
+ repeated int64 sessionsId = 2; // Список сеансов управления 
+ optional int32 index = 3;
+ optional int64 controlOperationGroupId = 4;
+}
+
+message ControlSchemeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ControlScheme criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ControlSchemeGetResponse {
+ repeated ControlScheme values = 8;
+ optional string errorMsg = 2;
+}
+
+message ControlSchemeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ControlSchemeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ControlSchemeStoreRequest {
+ required ControlScheme value = 1;
+ optional string transactionId = 2;
+}
+
+message ControlSchemeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

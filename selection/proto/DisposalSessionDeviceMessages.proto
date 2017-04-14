@@ -1,0 +1,48 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Определяет конкретное средство и список режимов.   @author Artyom  @uiname Средство в распоряжении 
+message DisposalSessionDevice {
+ optional int64 id = 1;
+ optional int64 disposalSessionDeviceTypeId = 2; // Внешний ключ определяющий к кому типу привязано устройство 
+ repeated int64 disposalLinkedDeviceId = 3; // Списко связанных средств 
+ optional string deviceSerialNumber = 4; // Номер конкретного средства 
+ optional int32 kitNumber = 5; // Номер комплекта 
+}
+
+message DisposalSessionDeviceGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional DisposalSessionDevice criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message DisposalSessionDeviceGetResponse {
+ repeated DisposalSessionDevice values = 8;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionDeviceRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionDeviceRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message DisposalSessionDeviceStoreRequest {
+ required DisposalSessionDevice value = 1;
+ optional string transactionId = 2;
+}
+
+message DisposalSessionDeviceStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,53 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 18.04.12            @uiname Трасса 
+message OrionTrassaView {
+ optional int64 id = 1;
+ optional double z = 2;
+ optional uint64 time = 3;
+ optional double h = 4;
+ optional double b = 5;
+ optional double l = 6;
+ optional double x = 7;
+ optional double y = 8;
+ optional int32 vit = 9;
+ optional int64 spacecraftId = 10;
+}
+
+message OrionTrassaViewGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional OrionTrassaView criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message OrionTrassaViewGetResponse {
+ repeated OrionTrassaView values = 8;
+ optional string errorMsg = 2;
+}
+
+message OrionTrassaViewRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message OrionTrassaViewRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message OrionTrassaViewStoreRequest {
+ required OrionTrassaView value = 1;
+ optional string transactionId = 2;
+}
+
+message OrionTrassaViewStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

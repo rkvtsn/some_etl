@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Диапазон УМН.    @author artyom  @author sis    @uiname Диапазон УМН 
+message UmnRange {
+ optional int64 id = 1;
+ optional int32 startUMN = 2; // Начало диапазона 
+ optional int32 endUMN = 3; // Конец диапазона 
+ optional uint64 startDate = 4; // Время начала 
+ optional uint64 endDate = 5; // Время окончания 
+ optional int64 generalSpacecraftTypeId = 6; // Тип ЛА 
+}
+
+message UmnRangeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional UmnRange criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message UmnRangeGetResponse {
+ repeated UmnRange values = 8;
+ optional string errorMsg = 2;
+}
+
+message UmnRangeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message UmnRangeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message UmnRangeStoreRequest {
+ required UmnRange value = 1;
+ optional string transactionId = 2;
+}
+
+message UmnRangeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,55 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Техническое обслуживание (ТО)  @author alex  @author sis    @uiname Техническое обслуживание  
+message Maintenance {
+ optional int64 id = 1;
+ optional int64 documentId = 2; // Документ 
+ optional uint64 expectedStartDate = 3; // Предполагаемая дата начала 
+ optional uint64 expectedEndDate = 4; // Предполагаемая дата окончания 
+ optional uint64 startTime = 5; // Время начала 
+ optional uint64 endTime = 6; // Время окончания 
+ optional int64 maintenanceTypeId = 7; // Тип ТО 
+ optional int64 deviceId = 8; // Средство, к которому относится ремонт. 
+ repeated int64 representingRestrictionsId = 9; // Ограничения 
+ optional string note = 10; // Примечание 
+ optional bool canceled = 11; // Признак отмены мероприятия 
+ optional int64 creationMoment = 12; // Миллисекунда создания 
+}
+
+message MaintenanceGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional Maintenance criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message MaintenanceGetResponse {
+ repeated Maintenance values = 8;
+ optional string errorMsg = 2;
+}
+
+message MaintenanceRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message MaintenanceRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message MaintenanceStoreRequest {
+ required Maintenance value = 1;
+ optional string transactionId = 2;
+}
+
+message MaintenanceStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

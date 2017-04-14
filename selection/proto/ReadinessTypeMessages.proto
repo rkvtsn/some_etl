@@ -1,0 +1,50 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Объект класса представляет собой готовность средства.    @author astamir    @uiname Готовность средства 
+message ReadinessType {
+ optional int64 id = 1;
+ optional int64 disposalId = 2;
+ optional string shortName = 3; // Условное наименование. 
+ optional string name = 4; // Наименование типа. 
+ optional uint64 duration = 5; // Длительность. 
+ optional string description = 6; // Описание 
+ optional int64 documentId = 7; // Документ типа готовности. 
+}
+
+message ReadinessTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ReadinessType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ReadinessTypeGetResponse {
+ repeated ReadinessType values = 8;
+ optional string errorMsg = 2;
+}
+
+message ReadinessTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ReadinessTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ReadinessTypeStoreRequest {
+ required ReadinessType value = 1;
+ optional string transactionId = 2;
+}
+
+message ReadinessTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

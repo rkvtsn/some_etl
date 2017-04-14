@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Created by IntelliJ IDEA.  User: vfoteeva  Date: 22.09.11  Time: 11:56   @uiname Соответствие средств НАКУ, режимов их работы и назначения связи  
+message ConFunDevTypeDevMode {
+ optional int64 id = 1;
+ optional int64 connectionFunctionId = 2;
+ optional int64 deviceTypeId = 3;
+ optional int64 deviceModeId = 4;
+}
+
+message ConFunDevTypeDevModeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ConFunDevTypeDevMode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ConFunDevTypeDevModeGetResponse {
+ repeated ConFunDevTypeDevMode values = 8;
+ optional string errorMsg = 2;
+}
+
+message ConFunDevTypeDevModeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ConFunDevTypeDevModeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ConFunDevTypeDevModeStoreRequest {
+ required ConFunDevTypeDevMode value = 1;
+ optional string transactionId = 2;
+}
+
+message ConFunDevTypeDevModeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

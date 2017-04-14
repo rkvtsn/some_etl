@@ -1,0 +1,47 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Баллистический центр    @author alex    @uiname Баллистический центр   
+message BallisticCenter {
+ optional int64 id = 1;
+ optional string name = 2; // Наименование 
+ optional string specification = 3; // Техническое задание 
+ optional int32 roomNumber = 4; // Код 
+}
+
+message BallisticCenterGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional BallisticCenter criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message BallisticCenterGetResponse {
+ repeated BallisticCenter values = 8;
+ optional string errorMsg = 2;
+}
+
+message BallisticCenterRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message BallisticCenterRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message BallisticCenterStoreRequest {
+ required BallisticCenter value = 1;
+ optional string transactionId = 2;
+}
+
+message BallisticCenterStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

@@ -1,0 +1,54 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Created by IntelliJ IDEA.  User: vfoteeva  Date: 23.09.11  Time: 12:26   @uiname Направление связи 
+message ConnectionDirection {
+ optional int64 id = 1;
+ optional string directionName = 2;
+ optional string baseNumber = 3;
+ optional string baseFunction = 4;
+ optional uint64 timeZone = 5;
+ optional string baseName = 6;
+ optional string baseFullName = 7;
+ optional int64 controlCenterId = 8;
+ optional int64 stationId = 9;
+ optional string connectionHub = 10;
+ optional int64 serial = 11;
+}
+
+message ConnectionDirectionGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional ConnectionDirection criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message ConnectionDirectionGetResponse {
+ repeated ConnectionDirection values = 8;
+ optional string errorMsg = 2;
+}
+
+message ConnectionDirectionRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionDirectionRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message ConnectionDirectionStoreRequest {
+ required ConnectionDirection value = 1;
+ optional string transactionId = 2;
+}
+
+message ConnectionDirectionStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

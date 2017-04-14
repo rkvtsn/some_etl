@@ -1,0 +1,169 @@
+
+ò
+common.protomessages"ü
+LoginRequest
+username (	
+password (	
+clientVersion (	
+
+subscriber (	
+
+clientTime (
+
+ip (	
+pkName (	
+hostName (	"É
+LoginResponse
+	sessionId (	
+workstationName (	
+	errorCode (
+errorMessage (	
+fio (	
+readOnly ("*
+CloneScheduleRequest
+
+scheduleId ("+
+CloneScheduleResponse
+
+scheduleId ("?
+MakeExtractionRequest
+
+scheduleId (
+
+subscriber (	".
+MakeExtractionResponse
+extractionId (""
+LogoutRequest
+	sessionId (	"
+ServerVersionRequest"=
+ServerVersionResponse
+version (	
+javaVersion (	"}
+EntityUpdateNotifier
+index (,
+action (2.messages.EntityUpdateAction
+modelClassRef (	
+	sessionId (	"H
+BatchUpdateNotifier1
+	notifiers (2.messages.EntityUpdateNotifier"X
+TransactionRequest+
+action (2.messages.TransactionAction
+transactionId (	">
+TransactionResponse
+errorMsg (	
+transactionId (	"5
+ErrorResponse
+errorMsg (	
+
+stackTrace (	")
+InsertDisposalRequest
+disposal ("?
+InsertDisposalResponse
+successfull (
+errorMsg (	"
+OkikNumberRequest"9
+OkikNumberResponse
+success (
+
+okikNumber ("ê
+BatchGetRequest
+classSimpleName (	
+
+id (
+	startTime (
+endTime (
+	startDate (
+endDate (
+criteria ("8
+BatchGetResponse
+
+classNames (	
+messages ("R
+ColumnDescription
+title (	.
+	data_type (2.messages.ResultSetDataType"
+ResultSetRow
+data ("_
+	ResultSet,
+columns (2.messages.ColumnDescription$
+rows (2.messages.ResultSetRow"9
+ConfirmRestrictionRequest
+restrictionConfirmId ("3
+ConfirmRestrictionResponse
+restrictionId ("D
+,GetLaunchHistoryElementBySpacecraftIdRequest
+spacecraftId ("O
+-GetLaunchHistoryElementBySpacecraftIdResponse
+launchHistoryElementId ("B
+ApproveScheduleRequest
+
+scheduleId (
+approvalDate ("?
+ApproveScheduleResponse
+
+scheduleId (
+revision ("â
+LaunchHistoryContentQuater
+launchContentId (
+launchHistoryElementId (
+spacecraftName (	
+expectedLaunchDate ("c
+!LaunchHistoryContentQuaterRequest
+expectedLaunchDateBegin (
+expectedLaunchDateEnd ("n
+"LaunchHistoryContentQuaterResponseH
+launchHistoryContentQuater (2$.messages.LaunchHistoryContentQuater" 
+ServerActivity
+notify (	"
+EnableBatchSelectRequest",
+EnableBatchSelectResponse
+enabled ("A
+AvailableUmnRange
+
+id (
+startUmn (
+endUmn ("4
+AvailableUmnRangeRequest
+spacecraftTypeId ("S
+AvailableUmnRangeResponse6
+availableUmnRange (2.messages.AvailableUmnRange")
+DropScheduleRequest
+
+scheduleId ("
+DropScheduleResponse"7
+FastScheduleSelectRequest
+date (
+sidk ("(
+FastRequestSelectRequest
+date ("8
+AvailableUmnRangeListRequest
+spacecraftTypeId (",
+AvailableUmnRangeListResponse
+umn ("W
+FastExtractionSelectRequest
+date (
+subscriberId (
+extractionId (*K
+EntityUpdateAction
+
+CREATE
+
+UPDATE
+
+DELETE
+DROP_SCHEDULE*8
+TransactionAction	
+START
+
+COMMIT
+ROLLBACK*V
+ResultSetDataType
+
+STRING
+INTEGER
+LONG
+
+DOUBLE
+TIME
+DATEB.
+ru.nicetu.integration.messagesBCommonProtos

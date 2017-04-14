@@ -1,0 +1,26 @@
+<request operation="list" object="radient">
+    <item name="uch" deleted="">
+        <property name="uchid" />
+		<property name="uchzavnumber" order="-1" />
+        <property name="uchsetnar" />
+		<property name="uchdescr" />
+        <property name="uchgroupid" />
+        <parameter name="uchgroupid" ne="" />
+        <item name="uchgroup" relation="uchgroupid">
+        	<property name="uchgroupname" />
+        	<property name="uchgroupnaznach" />
+        	<property name="uchgroupcode" />
+        	<property name="uchgroupgarantyear" />
+        	<property name="uchgroupgarantnar" />
+        	<item name="uchconfigurator" relation="uchgroupid">
+	    		<property name="militarymanid" />
+		    	<item name="militaryman" relation="militarymanid">
+	    			<property name="militaryunitid" />
+	    			<item name="milunit" relation="militaryunitid">
+		    			<property name="milunitname" />
+		    		</item>
+	    		</item>
+    		</item>
+    	</item>
+    </item>
+</request>

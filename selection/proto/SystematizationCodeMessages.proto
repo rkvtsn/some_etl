@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author aemaeth  @author savva   @uiname Код систематизации 
+message SystematizationCode {
+ optional int64 id = 1;
+ optional string code = 2; // Обозначение 
+ optional string name = 3; // Расшифровка обозначения  
+}
+
+message SystematizationCodeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SystematizationCode criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SystematizationCodeGetResponse {
+ repeated SystematizationCode values = 8;
+ optional string errorMsg = 2;
+}
+
+message SystematizationCodeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SystematizationCodeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SystematizationCodeStoreRequest {
+ required SystematizationCode value = 1;
+ optional string transactionId = 2;
+}
+
+message SystematizationCodeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

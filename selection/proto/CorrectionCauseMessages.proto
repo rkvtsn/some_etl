@@ -1,0 +1,46 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // @author : vtrusov          Date: 16.01.13          Список возможных причин коррекций для сеансов  @uiname Причина коррекции 
+message CorrectionCause {
+ optional int64 id = 1;
+ optional string cause = 2;
+ optional string fullCause = 3;
+}
+
+message CorrectionCauseGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional CorrectionCause criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message CorrectionCauseGetResponse {
+ repeated CorrectionCause values = 8;
+ optional string errorMsg = 2;
+}
+
+message CorrectionCauseRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectionCauseRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message CorrectionCauseStoreRequest {
+ required CorrectionCause value = 1;
+ optional string transactionId = 2;
+}
+
+message CorrectionCauseStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+

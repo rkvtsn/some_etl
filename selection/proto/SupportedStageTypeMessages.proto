@@ -1,0 +1,49 @@
+package messages;
+
+option java_package = "ru.nicetu.integration.messages";
+ // Поддерживаемые типы этапов функционирования, является связочной сущностью (таблицей) между типами  этапов функционирования и типами ЛА.    @author sis    @uiname Поддерживаемые типы этапов функционирования   
+message SupportedStageType {
+ optional int64 id = 1;
+ optional int64 stageTypeId = 2;
+ optional int64 controlCycleId = 3; // Технологический цикл управления для данного типа. 
+ optional string description = 4; // Описание 
+ optional int32 position = 5; // Номер по порядку в списке поддерживаемых этапов эксплуатации типа КА 
+ optional int64 spacecraftTypeId = 6; // Идентификатор типа КА 
+}
+
+message SupportedStageTypeGetRequest {
+ optional int64 id = 1;
+ optional uint64 startTime = 2;
+ optional uint64 endTime = 3;
+ optional uint64 startDate = 4;
+ optional uint64 endDate = 5;
+ optional SupportedStageType criteria = 6;
+ optional string transactionId = 7;
+ optional bool initDependent = 8;
+}
+
+message SupportedStageTypeGetResponse {
+ repeated SupportedStageType values = 8;
+ optional string errorMsg = 2;
+}
+
+message SupportedStageTypeRemoveRequest {
+ optional int64 id = 1;
+ optional string transactionId = 2;
+}
+
+message SupportedStageTypeRemoveResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
+message SupportedStageTypeStoreRequest {
+ required SupportedStageType value = 1;
+ optional string transactionId = 2;
+}
+
+message SupportedStageTypeStoreResponse {
+ optional int64 id = 1;
+ optional string errorMsg = 2;
+}
+
