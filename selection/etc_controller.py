@@ -205,4 +205,3 @@ class EtlController(object):
                                                                     sql_values=sql_values,
                                                                     sql_where=sql_where)
         return sql_insert_or_update
-
