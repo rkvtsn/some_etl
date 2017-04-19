@@ -6,64 +6,50 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>252</height>
+    <width>398</width>
+    <height>179</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>80</y>
-      <width>206</width>
-      <height>85</height>
+      <x>70</x>
+      <y>30</y>
+      <width>251</width>
+      <height>51</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Каждую</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="spinInterval">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>3600</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>сек.</string>
-         </property>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignRight">
-        <widget class="QPushButton" name="btnSetRequestTime">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>Установить</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Каждую</string>
+       </property>
+      </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnSetRequestTime_2">
+      <widget class="QSpinBox" name="spinInterval">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>3600</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>сек.</string>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignRight">
+      <widget class="QPushButton" name="btnSetRequestTime">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -72,31 +58,46 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="btnRequest">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Запросить</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
-   <zorder>verticalLayoutWidget</zorder>
+   <widget class="QPushButton" name="btnRequest">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>100</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>Запросить</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>381</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
    <zorder>label</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>btnRequest</zorder>
+   <zorder>progressBar</zorder>
   </widget>
  </widget>
- <tabstops>
-  <tabstop>spinInterval</tabstop>
-  <tabstop>btnSetRequestTime</tabstop>
-  <tabstop>btnSetRequestTime_2</tabstop>
-  <tabstop>btnRequest</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

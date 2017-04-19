@@ -80,7 +80,7 @@ class IntegrationClient(Client):
                 if kwargs.has_key('proto_response'):
                     response_instance = kwargs['proto_response']()
                     response_instance.ParseFromString(frame.body)
-                    return response_instance, headers
+                    return response_instance, 200
             except Exception as e:
                 print e
                 print "[request error] Aborted, please check your request."
