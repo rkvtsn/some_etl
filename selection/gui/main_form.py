@@ -20,11 +20,13 @@ class Task(QtCore.QThread):
 
 
 class MainForm(QtGui.QMainWindow, design.Ui_MainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, user=None):
         super(MainForm, self).__init__(parent)
         self.setupUi(self)
-        self.btnRequest.clicked.connect(self.make_request)
-        self.btnSetRequestTime.clicked.connect(self.set_interval)
+        if user is None:
+            raise Exception("Something wrong with user! Error #100")
+        self.btn_request.clicked.connect(self.make_request)
+        self.btn_set_interval.clicked.connect(self.set_interval)
         self.interval = TimeInterval(3600, self.request)
 
     def request(self):
@@ -37,22 +39,18 @@ class MainForm(QtGui.QMainWindow, design.Ui_MainWindow):
                 print percentage
 
     def make_request(self):
-        self.btnRequest.setEnabled(False)
-        self.btnSetRequestTime.setEnabled(False)
-        self.progressBar.setMaximum(5)
-        self.progressBar.setValue(0)
-        self.progressBar.setValue(3)
+        self.btn_request.setEnabled(False)
+        self.btn_set_interval.setEnabled(False)
         self.request_thread = Task(self.request)
         self.connect(self.request_thread, SIGNAL("task_done(QString)"), self.done)
         self.request_thread.start()
 
     def done(self, result):
-        self.progressBar.setValue(5)
-        self.btnRequest.setEnabled(True)
-        self.btnSetRequestTime.setEnabled(True)
+        self.btn_request.setEnabled(True)
+        self.btn_set_interval.setEnabled(True)
 
     def set_interval(self, checked):
-        t = self.spinInterval.value()
+        t = self.spin_interval.value()
         self.interval.set_timeout(t)
 
     def on_close(self):

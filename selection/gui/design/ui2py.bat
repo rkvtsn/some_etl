@@ -1,2 +1,1 @@
-pyuic4 -o login_window.py login.ui
-pyuic4 -o main_window.py main_window.ui
+pyuic4 -o login_window.py login_dialog.ui & pyuic4 -o main_window.py main_window.ui & pyuic4 -o admin_window.py admin_window.ui & pyuic4 -o add_dialog.py add_dialog.ui

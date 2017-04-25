@@ -1,9 +1,9 @@
 # coding=utf-8
+import sys
 from selection import app
 
-
 def main():
-    app.exec_()
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
